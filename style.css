@@ -1,0 +1,187 @@
+/* -- Color Palette & Fonts -- */
+:root {
+    --bg-color: #fdf6e8; /* Creamy paper background */
+    --text-color: #3a3a3a; /* Dark gray for text */
+    --header-color: #4a2c2a; /* Deep brown for main titles */
+    --accent-color: #b74343; /* Muted red for accents */
+    --card-bg: #ffffff; /* White for the cards */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+/* -- General Styles -- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 3px double var(--header-color);
+    padding-bottom: 20px;
+}
+
+header h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5em;
+    color: var(--header-color);
+    margin: 0;
+}
+
+header p {
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--accent-color);
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #777;
+}
+
+
+/* -- Chapter Styles -- */
+.chapter {
+    margin-bottom: 60px;
+}
+
+.chapter h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5em;
+    color: var(--header-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.chapter-description {
+    text-align: center;
+    font-size: 1.1em;
+    font-style: italic;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.chapter-image {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border: 8px solid white;
+}
+
+/* -- The Learning Cards -- */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.card .pronunciation {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #555;
+    background-color: #f7f7f7;
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: inline-block;
+    border: 1px solid #eee;
+}
+
+.card .details {
+    margin-top: 15px;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 15px;
+    font-size: 1.1em;
+}
+
+/* -- Special Lists (Alphabet, Numbers) -- */
+.alphabet-list, .columns {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+
+.alphabet-list li, .columns li {
+    padding: 5px 0;
+}
+
+/* -- Audio Player Styling -- */
+audio {
+    width: 100%;
+    margin-top: 10px;
+    height: 40px; /* Make player smaller */
+}
+.audio-container {
+    text-align: left;
+    background: #fff8eb;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px auto 30px;
+    border: 1px solid #eaddc0;
+}
+.audio-container span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--header-color);
+}
+
+/* -- Exercise Card Styling -- */
+.exercise-card {
+    background: #eef2f5;
+    border: 1px solid #d0dbe6;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+.exercise-card h3 {
+    font-family: var(--font-heading);
+    color: #3b5998; /* A nice blue for exercises */
+    margin-top: 0;
+}
+
+/* -- Dividers -- */
+hr.section-divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    margin: 40px 0;
+}
