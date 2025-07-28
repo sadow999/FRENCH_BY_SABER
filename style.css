@@ -57,6 +57,7 @@ footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1p
 .card .details { margin-top: 15px; font-size: 1.1em; }
 .details-list { padding-left: 20px; list-style-type: disc; }
 [dir="rtl"] .details-list { padding-left: 0; padding-right: 20px; }
+[dir="rtl"] .details-list p, [dir="rtl"] .details-list .pronunciation { text-align: right; }
 
 /* -- The Special 'Pro Tip' Box for Detailed Explanations -- */
 .pro-tip {
@@ -73,8 +74,10 @@ footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1p
     border-right: 4px solid var(--accent-color);
 }
 .pro-tip h4 { margin-top: 0; font-size: 1.2em; color: var(--accent-color); }
-.pro-tip ul { padding-left: 20px; }
+.pro-tip ul { padding-left: 20px; margin-top: 10px; margin-bottom: 5px;}
 [dir="rtl"] .pro-tip ul { padding-left: 0; padding-right: 20px; }
+.pro-tip p { margin-top: 5px; }
+
 
 /* -- Other Styles -- */
 .tag { font-size: 0.7em; background-color: #eef2f5; color: #3b5998; padding: 3px 8px; border-radius: 10px; vertical-align: middle; margin-left: 10px; }
@@ -87,6 +90,29 @@ hr.section-divider { border: 0; height: 1px; background-image: linear-gradient(t
 .exercise-card { background: #eef2f5; border: 1px solid #d0dbe6; border-radius: 8px; padding: 25px; margin-bottom: 25px; }
 .exercise-card h3 { font-family: var(--font-heading); color: #3b5998; margin-top: 0; }
 
+/* -- Verb and Dialogue Styles -- */
+.verb-conjugation {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+.verb-conjugation li {
+    padding: 8px 12px;
+    border-left: 3px solid var(--accent-color);
+    margin-bottom: 5px;
+    background-color: #fafafa;
+}
+
+.dialogue {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-left: 4px solid #5a99e3;
+    padding: 20px;
+    border-radius: 5px;
+}
+.dialogue p { margin: 0 0 10px 0; }
+.dialogue p:last-child { margin-bottom: 0; }
+
 /* -- Alphabet & Columns -- */
-.alphabet-list, .columns { list-style: none; padding: 0; columns: 2; -webkit-columns: 2; -moz-columns: 2; }
+.alphabet-list, .columns { list-style: none; padding: 0; columns: 2; -webkit-columns: 2; -moz-columns: 2; column-gap: 30px; }
 .alphabet-list li, .columns li { padding: 5px 0; }
