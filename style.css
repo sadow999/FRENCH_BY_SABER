@@ -5,6 +5,7 @@
     --header-color: #4a2c2a; /* Deep brown for main titles */
     --accent-color: #b74343; /* Muted red for accents */
     --card-bg: #ffffff; /* White for the cards */
+    --tip-bg: #fff8eb; /* Light yellow for tip boxes */
     --shadow-color: rgba(0, 0, 0, 0.1);
     
     --font-heading: 'Playfair Display', serif;
@@ -21,211 +22,71 @@ body {
     padding: 20px;
 }
 
+/* Ensure proper text alignment for LTR/RTL content */
+[dir="rtl"] {
+    text-align: right;
+}
+
 header {
     text-align: center;
     margin-bottom: 50px;
     border-bottom: 3px double var(--header-color);
     padding-bottom: 20px;
 }
-
-header h1 {
-    font-family: var(--font-heading);
-    font-size: 3.5em;
-    color: var(--header-color);
-    margin: 0;
-}
-
-header p {
-    font-size: 1.2em;
-    font-style: italic;
-    color: var(--accent-color);
-}
-
-main {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    font-size: 0.9em;
-    color: #777;
-}
+header h1 { font-family: var(--font-heading); font-size: 3.5em; color: var(--header-color); margin: 0; }
+header p { font-size: 1.2em; font-style: italic; color: var(--accent-color); }
+main { max-width: 800px; margin: 0 auto; }
+footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #777; }
 
 
 /* -- Chapter Styles -- */
-.chapter {
-    margin-bottom: 60px;
-}
-
-.chapter h2 {
-    font-family: var(--font-heading);
-    font-size: 2.5em;
-    color: var(--header-color);
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.chapter-description {
-    text-align: center;
-    font-size: 1.1em;
-    font-style: italic;
-    margin-bottom: 40px;
-    color: #555;
-}
-
-.chapter-image {
-    width: 100%;
-    max-width: 500px;
-    display: block;
-    margin: 20px auto 30px;
-    border-radius: 5px;
-    box-shadow: 0 5px 15px var(--shadow-color);
-    border: 8px solid white;
-}
+.chapter { margin-bottom: 60px; }
+.chapter h2 { font-family: var(--font-heading); font-size: 2.5em; color: var(--header-color); text-align: center; margin-bottom: 10px; }
+.chapter-description { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 40px; color: #555; }
+.chapter-image { width: 100%; max-width: 500px; display: block; margin: 20px auto 30px; border-radius: 5px; box-shadow: 0 5px 15px var(--shadow-color); border: 8px solid white; }
+.decorative-image { max-width: 200px; display: block; margin: 20px auto; opacity: 0.5; }
+.inline-image { max-width: 100%; border-radius: 4px; margin: 10px 0; }
 
 /* -- The Learning Cards -- */
-.card {
-    background-color: var(--card-bg);
-    border: 1px solid #eee;
-    border-radius: 8px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 10px var(--shadow-color);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
+.card { background-color: var(--card-bg); border: 1px solid #eee; border-radius: 8px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 10px var(--shadow-color); }
+.card h3 { font-family: var(--font-heading); font-size: 1.8em; color: var(--accent-color); margin-top: 0; margin-bottom: 15px; }
+.card h4 { font-family: var(--font-heading); font-size: 1.4em; color: var(--header-color); margin-top: 20px; }
+.card h4.sub-heading { margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
+.pronunciation { font-weight: bold; font-size: 1.2em; color: #555; background-color: #f7f7f7; padding: 8px 12px; border-radius: 5px; display: inline-block; border: 1px solid #eee; }
+.card .details { margin-top: 15px; font-size: 1.1em; }
+.details-list { padding-left: 20px; list-style-type: disc; }
+[dir="rtl"] .details-list { padding-left: 0; padding-right: 20px; }
 
-.card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8em;
-    color: var(--accent-color);
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.card .pronunciation {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #555;
-    background-color: #f7f7f7;
-    padding: 8px 12px;
-    border-radius: 5px;
-    display: inline-block;
-    border: 1px solid #eee;
-}
-
-.card .details {
-    margin-top: 15px;
-    border-left: 3px solid var(--accent-color);
-    padding-left: 15px;
-    font-size: 1.1em;
-}
-
-/* -- Special Lists (Alphabet, Numbers) -- */
-.alphabet-list, .columns {
-    list-style: none;
-    padding: 0;
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-}
-
-.alphabet-list li, .columns li {
-    padding: 5px 0;
-}
-
-/* -- Audio Player Styling -- */
-audio {
-    width: 100%;
-    margin-top: 10px;
-    height: 40px; /* Make player smaller */
-}
-.audio-container {
-    text-align: left;
-    background: #fff8eb;
-    padding: 15px;
-    border-radius: 5px;
-    margin: 20px auto 30px;
+/* -- The Special 'Pro Tip' Box for Detailed Explanations -- */
+.pro-tip {
+    background-color: var(--tip-bg);
     border: 1px solid #eaddc0;
+    border-left: 4px solid var(--accent-color);
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 1em;
 }
-.audio-container span {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--header-color);
+[dir="rtl"].pro-tip {
+    border-left: none;
+    border-right: 4px solid var(--accent-color);
 }
+.pro-tip h4 { margin-top: 0; font-size: 1.2em; color: var(--accent-color); }
+.pro-tip ul { padding-left: 20px; }
+[dir="rtl"] .pro-tip ul { padding-left: 0; padding-right: 20px; }
+
+/* -- Other Styles -- */
+.tag { font-size: 0.7em; background-color: #eef2f5; color: #3b5998; padding: 3px 8px; border-radius: 10px; vertical-align: middle; margin-left: 10px; }
+audio { width: 100%; margin-top: 10px; height: 40px; }
+.audio-container { text-align: left; background: #fff; padding: 15px; border-radius: 5px; margin: 20px auto 30px; border: 1px solid #eaddc0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.audio-container span { display: block; font-weight: bold; margin-bottom: 10px; color: var(--header-color); }
+hr.section-divider { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); margin: 50px 0; }
 
 /* -- Exercise Card Styling -- */
-.exercise-card {
-    background: #eef2f5;
-    border: 1px solid #d0dbe6;
-    border-radius: 8px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 10px var(--shadow-color);
-}
-.exercise-card h3 {
-    font-family: var(--font-heading);
-    color: #3b5998; /* A nice blue for exercises */
-    margin-top: 0;
-}
-.exercise-card .answers {
-    font-style: italic;
-    color: #777;
-    font-size: 0.9em;
-    background-color: #e4eaf0;
-    padding: 5px 10px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-top: 10px;
-}
+.exercise-card { background: #eef2f5; border: 1px solid #d0dbe6; border-radius: 8px; padding: 25px; margin-bottom: 25px; }
+.exercise-card h3 { font-family: var(--font-heading); color: #3b5998; margin-top: 0; }
 
-/* -- Dividers -- */
-hr.section-divider {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
-    margin: 40px 0;
-}
-
-
-/* -- NEW STYLES ADDED FOR UPGRADED CONTENT -- */
-
-.verb-conjugation {
-    list-style-type: none;
-    padding-left: 0;
-}
-.verb-conjugation li {
-    padding: 8px;
-    border-left: 3px solid var(--accent-color);
-    margin-bottom: 5px;
-    background-color: #fafafa;
-}
-.verb-conjugation em {
-    color: #555;
-    font-size: 0.9em;
-}
-
-.dialogue {
-    background-color: #f8f9fa;
-    border-left: 4px solid #5a99e3;
-    padding: 20px;
-    border-radius: 5px;
-}
-.dialogue p {
-    margin: 0 0 10px 0;
-}
-.dialogue p:last-child {
-    margin-bottom: 0;
-}
-.exercise-list {
-    line-height: 2;
-}
+/* -- Alphabet & Columns -- */
+.alphabet-list, .columns { list-style: none; padding: 0; columns: 2; -webkit-columns: 2; -moz-columns: 2; }
+.alphabet-list li, .columns li { padding: 5px 0; }
