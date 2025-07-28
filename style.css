@@ -177,6 +177,16 @@ audio {
     color: #3b5998; /* A nice blue for exercises */
     margin-top: 0;
 }
+.exercise-card .answers {
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
+    background-color: #e4eaf0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 10px;
+}
 
 /* -- Dividers -- */
 hr.section-divider {
@@ -184,4 +194,38 @@ hr.section-divider {
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
     margin: 40px 0;
+}
+
+
+/* -- NEW STYLES ADDED FOR UPGRADED CONTENT -- */
+
+.verb-conjugation {
+    list-style-type: none;
+    padding-left: 0;
+}
+.verb-conjugation li {
+    padding: 8px;
+    border-left: 3px solid var(--accent-color);
+    margin-bottom: 5px;
+    background-color: #fafafa;
+}
+.verb-conjugation em {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.dialogue {
+    background-color: #f8f9fa;
+    border-left: 4px solid #5a99e3;
+    padding: 20px;
+    border-radius: 5px;
+}
+.dialogue p {
+    margin: 0 0 10px 0;
+}
+.dialogue p:last-child {
+    margin-bottom: 0;
+}
+.exercise-list {
+    line-height: 2;
 }
