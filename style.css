@@ -1,4 +1,4 @@
-/* -- Color Palette   & Fonts -- */
+/* -- Color Palette & Fonts -- */
 :root {
     --bg-color: #fdf6e8; /* Creamy paper background */
     --text-color: #3a3a3a; /* Dark gray for text */
@@ -7,6 +7,10 @@
     --card-bg: #ffffff; /* White for the cards */
     --tip-bg: #fff8eb; /* Light yellow for tip boxes */
     --shadow-color: rgba(0, 0, 0, 0.1);
+    --exercise-bg: #eef2f5; /* Light blue-gray for exercises */
+    --exercise-border: #d0dbe6;
+    --dialogue-bg: #f8f9fa;
+    --dialogue-border: #5a99e3; /* Blue for dialogue border */
     
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
@@ -33,31 +37,142 @@ header {
     border-bottom: 3px double var(--header-color);
     padding-bottom: 20px;
 }
-header h1 { font-family: var(--font-heading); font-size: 3.5em; color: var(--header-color); margin: 0; }
-header p { font-size: 1.2em; font-style: italic; color: var(--accent-color); }
-main { max-width: 800px; margin: 0 auto; }
-footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #777; }
+header h1 { 
+    font-family: var(--font-heading); 
+    font-size: 3.5em; 
+    color: var(--header-color); 
+    margin: 0; 
+}
+/* Added style for potential subtitle */
+header .subtitle {
+    font-size: 1em;
+    font-style: normal;
+    margin-top: 10px;
+    color: var(--text-color); /* Use main text color for subtitle */
+}
+header p { 
+    font-size: 1.2em; 
+    font-style: italic; 
+    color: var(--accent-color); 
+    margin: 5px 0 0 0; /* Adjust margin for better spacing with subtitle */
+}
+main { 
+    max-width: 900px; /* Slightly increased max-width for better readability on larger screens */
+    margin: 0 auto; 
+    padding: 0 10px; /* Add padding for smaller screens */
+}
+footer { 
+    text-align: center; 
+    margin-top: 50px; 
+    padding-top: 20px; 
+    border-top: 1px solid #ddd; 
+    font-size: 0.9em; 
+    color: #777; 
+}
 
 
 /* -- Chapter Styles -- */
-.chapter { margin-bottom: 60px; }
-.chapter h2 { font-family: var(--font-heading); font-size: 2.5em; color: var(--header-color); text-align: center; margin-bottom: 10px; }
-.chapter-description { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 40px; color: #555; }
-.chapter-image { width: 100%; max-width: 500px; display: block; margin: 20px auto 30px; border-radius: 5px; box-shadow: 0 5px 15px var(--shadow-color); border: 8px solid white; }
-.decorative-image { max-width: 200px; display: block; margin: 20px auto; opacity: 0.5; }
-.inline-image { max-width: 100%; border-radius: 4px; margin: 10px 0; }
+.chapter { 
+    margin-bottom: 60px; 
+}
+.chapter h2 { 
+    font-family: var(--font-heading); 
+    font-size: 2.5em; 
+    color: var(--header-color); 
+    text-align: center; 
+    margin-bottom: 10px; 
+}
+.chapter-description { 
+    text-align: center; 
+    font-size: 1.1em; 
+    font-style: italic; 
+    margin-bottom: 40px; 
+    color: #555; 
+}
+.chapter-image { 
+    width: 100%; 
+    max-width: 500px; 
+    display: block; 
+    margin: 20px auto 30px; 
+    border-radius: 5px; 
+    box-shadow: 0 5px 15px var(--shadow-color); 
+    border: 8px solid white; 
+}
+.decorative-image { 
+    max-width: 200px; 
+    display: block; 
+    margin: 20px auto; 
+    opacity: 0.5; 
+}
+.inline-image { 
+    max-width: 100%; 
+    border-radius: 4px; 
+    margin: 10px 0; 
+}
 
 /* -- The Learning Cards -- */
-.card { background-color: var(--card-bg); border: 1px solid #eee; border-radius: 8px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 10px var(--shadow-color); }
-.card h3 { font-family: var(--font-heading); font-size: 1.8em; color: var(--accent-color); margin-top: 0; margin-bottom: 15px; }
-.card h4 { font-family: var(--font-heading); font-size: 1.4em; color: var(--header-color); margin-top: 20px; }
-.card h4.sub-heading { margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; }
+.card { 
+    background-color: var(--card-bg); 
+    border: 1px solid #eee; 
+    border-radius: 8px; 
+    padding: 25px; 
+    margin-bottom: 25px; 
+    box-shadow: 0 4px 10px var(--shadow-color); 
+}
+.card h3 { 
+    font-family: var(--font-heading); 
+    font-size: 1.8em; 
+    color: var(--accent-color); 
+    margin-top: 0; 
+    margin-bottom: 15px; 
+}
+.card h4 { 
+    font-family: var(--font-heading); 
+    font-size: 1.4em; 
+    color: var(--header-color); 
+    margin-top: 20px; 
+    margin-bottom: 10px; /* Reduced margin below h4 */
+}
+.card h4.sub-heading { 
+    margin-top: 25px; 
+    padding-top: 15px; 
+    border-top: 1px solid #eee; 
+}
 
-.pronunciation { font-weight: bold; font-size: 1.2em; color: #555; background-color: #f7f7f7; padding: 8px 12px; border-radius: 5px; display: inline-block; border: 1px solid #eee; }
-.card .details { margin-top: 15px; font-size: 1.1em; }
-.details-list { padding-left: 20px; list-style-type: disc; }
-[dir="rtl"] .details-list { padding-left: 0; padding-right: 20px; }
-[dir="rtl"] .details-list p, [dir="rtl"] .details-list .pronunciation { text-align: right; }
+.pronunciation { 
+    font-weight: bold; 
+    font-size: 1.1em; /* Slightly smaller */
+    color: #555; 
+    background-color: #f7f7f7; 
+    padding: 6px 10px; /* Adjusted padding */
+    border-radius: 5px; 
+    display: inline-block; 
+    border: 1px solid #eee; 
+    margin-top: 5px; /* Add margin for spacing */
+    margin-bottom: 10px; /* Add margin below */
+}
+.card .details { 
+    margin-top: 10px; /* Reduced margin */
+    margin-bottom: 15px; /* Add margin below details block */
+    font-size: 1.05em; /* Slightly smaller than before */
+}
+.details-list { 
+    padding-left: 20px; 
+    list-style-type: disc; 
+    margin-top: 10px; /* Add margin above lists */
+    margin-bottom: 15px; /* Add margin below lists */
+}
+.details-list li {
+    margin-bottom: 8px; /* Space between list items */
+}
+[dir="rtl"] .details-list { 
+    padding-left: 0; 
+    padding-right: 20px; 
+}
+[dir="rtl"] .details-list p, 
+[dir="rtl"] .details-list .pronunciation { 
+    text-align: right; 
+}
 
 /* -- The Special 'Pro Tip' Box for Detailed Explanations -- */
 .pro-tip {
@@ -65,36 +180,103 @@ footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1p
     border: 1px solid #eaddc0;
     border-left: 4px solid var(--accent-color);
     padding: 15px 20px;
-    margin-top: 20px;
+    margin-top: 15px; /* Reduced margin */
+    margin-bottom: 20px; /* Add margin below */
     border-radius: 5px;
     font-size: 1em;
+    /* Initially hidden by JS, but provide a base style */
+    /* transition: opacity 0.3s ease-in-out; */ /* Optional: for fade effect if implemented in JS */
 }
 [dir="rtl"].pro-tip {
     border-left: none;
     border-right: 4px solid var(--accent-color);
 }
-.pro-tip h4 { margin-top: 0; font-size: 1.2em; color: var(--accent-color); }
-.pro-tip ul { padding-left: 20px; margin-top: 10px; margin-bottom: 5px;}
-[dir="rtl"] .pro-tip ul { padding-left: 0; padding-right: 20px; }
-.pro-tip p { margin-top: 5px; }
+.pro-tip h4 { 
+    margin-top: 0; 
+    font-size: 1.2em; 
+    color: var(--accent-color); 
+}
+.pro-tip ul, .pro-tip p { 
+    margin-top: 10px; 
+    margin-bottom: 5px;
+}
+.pro-tip ul {
+    padding-left: 20px;
+}
+[dir="rtl"] .pro-tip ul { 
+    padding-left: 0; 
+    padding-right: 20px; 
+}
+.pro-tip p { 
+    margin-top: 5px; 
+}
 
 
 /* -- Other Styles -- */
-.tag { font-size: 0.7em; background-color: #eef2f5; color: #3b5998; padding: 3px 8px; border-radius: 10px; vertical-align: middle; margin-left: 10px; }
-audio { width: 100%; margin-top: 10px; height: 40px; }
-.audio-container { text-align: left; background: #fff; padding: 15px; border-radius: 5px; margin: 20px auto 30px; border: 1px solid #eaddc0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-.audio-container span { display: block; font-weight: bold; margin-bottom: 10px; color: var(--header-color); }
-hr.section-divider { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); margin: 50px 0; }
+.tag { 
+    font-size: 0.7em; 
+    background-color: #eef2f5; 
+    color: #3b5998; 
+    padding: 3px 8px; 
+    border-radius: 10px; 
+    vertical-align: middle; 
+    margin-left: 10px; 
+}
+/* Audio Container Styles */
+audio { 
+    width: 100%; 
+    margin-top: 10px; 
+    height: 40px; 
+}
+.audio-container { 
+    text-align: left; 
+    background: #fff; 
+    padding: 15px; 
+    border-radius: 5px; 
+    margin: 20px auto 30px; 
+    border: 1px solid #eaddc0; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+}
+.audio-container span { 
+    display: block; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+    color: var(--header-color); 
+}
+/* Audio Feedback (from JS) */
+.audio-container.playing {
+    border-color: var(--accent-color);
+    background-color: #fff0f0; /* Light red background */
+}
+
+/* Section Divider */
+hr.section-divider { 
+    border: 0; 
+    height: 1px; 
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); 
+    margin: 50px 0; 
+}
 
 /* -- Exercise Card Styling -- */
-.exercise-card { background: #eef2f5; border: 1px solid #d0dbe6; border-radius: 8px; padding: 25px; margin-bottom: 25px; }
-.exercise-card h3 { font-family: var(--font-heading); color: #3b5998; margin-top: 0; }
+.exercise-card { 
+    background: var(--exercise-bg); 
+    border: 1px solid var(--exercise-border); 
+    border-radius: 8px; 
+    padding: 25px; 
+    margin-bottom: 25px; 
+}
+.exercise-card h3 { 
+    font-family: var(--font-heading); 
+    color: #3b5998; /* Blue accent for exercises */
+    margin-top: 0; 
+}
 
 /* -- Verb and Dialogue Styles -- */
 .verb-conjugation {
     list-style-type: none;
     padding-left: 0;
     margin-top: 15px;
+    margin-bottom: 20px; /* Add margin below */
 }
 .verb-conjugation li {
     padding: 8px 12px;
@@ -102,17 +284,115 @@ hr.section-divider { border: 0; height: 1px; background-image: linear-gradient(t
     margin-bottom: 5px;
     background-color: #fafafa;
 }
+/* RTL for verb conjugation */
+[dir="rtl"] .verb-conjugation li {
+    border-left: none;
+    border-right: 3px solid var(--accent-color);
+    padding: 8px 12px;
+}
 
 .dialogue {
-    background-color: #f8f9fa;
+    background-color: var(--dialogue-bg);
     border: 1px solid #ddd;
-    border-left: 4px solid #5a99e3;
+    border-left: 4px solid var(--dialogue-border);
     padding: 20px;
     border-radius: 5px;
+    margin-top: 15px; /* Add margin above */
+    margin-bottom: 20px; /* Add margin below */
 }
-.dialogue p { margin: 0 0 10px 0; }
-.dialogue p:last-child { margin-bottom: 0; }
+.dialogue p { 
+    margin: 0 0 10px 0; 
+}
+.dialogue p:last-child { 
+    margin-bottom: 0; 
+}
+/* RTL for dialogue */
+[dir="rtl"] .dialogue {
+     border-left: none;
+     border-right: 4px solid var(--dialogue-border);
+}
 
 /* -- Alphabet & Columns -- */
-.alphabet-list, .columns { list-style: none; padding: 0; columns: 2; -webkit-columns: 2; -moz-columns: 2; column-gap: 30px; }
-.alphabet-list li, .columns li { padding: 5px 0; }
+.alphabet-list, .columns { 
+    list-style: none; 
+    padding: 0; 
+    columns: 2; 
+    -webkit-columns: 2; 
+    -moz-columns: 2; 
+    column-gap: 30px; 
+    margin-top: 15px; /* Add margin above */
+    margin-bottom: 20px; /* Add margin below */
+}
+.alphabet-list li, .columns li { 
+    padding: 5px 0; 
+    break-inside: avoid; /* Prevent list items from breaking across columns */
+}
+
+/* -- Toggle Button (from JS) -- */
+.toggle-btn {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: var(--text-color);
+    transition: background-color 0.2s ease;
+}
+.toggle-btn:hover {
+    background-color: #e0e0e0;
+}
+/* Hide toggle button if JS is disabled (optional, requires <noscript> handling in HTML) */
+.no-js .toggle-btn {
+    display: none;
+}
+
+/* -- Responsive Design -- */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    header h1 {
+        font-size: 2.5em;
+    }
+    .chapter h2 {
+        font-size: 2em;
+    }
+    .card, .exercise-card {
+        padding: 20px;
+    }
+    .alphabet-list, .columns {
+        columns: 1;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+    }
+    .chapter-image, .decorative-image, .inline-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .chapter h2 {
+        font-size: 1.7em;
+    }
+    .card h3 {
+        font-size: 1.5em;
+    }
+    .card h4 {
+        font-size: 1.2em;
+    }
+     .pronunciation {
+        font-size: 1em; /* Even smaller on very small screens */
+        padding: 5px 8px;
+    }
+    .audio-container {
+        padding: 12px;
+    }
+}
