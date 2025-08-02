@@ -1,769 +1,118 @@
-<!DOCTYPE html>
-<html lang="fr" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Carnet de Voyage en Français - Interactive Learning</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #fdf6e8;
-            --text-color: #2c2c2c;
-            --header-color: #4a2c2a;
-            --accent-color: #b74343;
-            --secondary-accent: #5a99e3;
-            --card-bg: #ffffff;
-            --tip-bg: #fff8eb;
-            --exercise-bg: #f0f7ff;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-            --border-color: #e0d0b8;
-            
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Lato', sans-serif;
-            --font-accent: 'Crimson Text', serif;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--bg-color) 0%, #f8f1e0 100%);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            line-height: 1.7;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header Styles */
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 20px;
-            background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
-            border-radius: 20px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            border: 2px solid var(--border-color);
-        }
-
-        header h1 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5em, 5vw, 4em);
-            color: var(--header-color);
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        header p {
-            font-size: 1.3em;
-            font-style: italic;
-            color: var(--accent-color);
-            margin: 10px 0 0 0;
-            font-family: var(--font-accent);
-        }
-
-        .subtitle-arabic {
-            font-size: 1.1em;
-            color: #666;
-            margin-top: 10px;
-            direction: rtl;
-            text-align: center;
-        }
-
-        /* Navigation */
-        .nav-container {
-            background: rgba(255,255,255,0.95);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 5px 20px var(--shadow-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .nav-item {
-            background: linear-gradient(135deg, var(--secondary-accent), #4a8bc2);
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .nav-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(90, 153, 227, 0.3);
-        }
-
-        /* Chapter Styles */
-        .chapter {
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .chapter.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .chapter h2 {
-            font-family: var(--font-heading);
-            font-size: clamp(2em, 4vw, 2.8em);
-            color: var(--header-color);
-            text-align: center;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .chapter-description {
-            text-align: center;
-            font-size: 1.2em;
-            font-style: italic;
-            margin-bottom: 40px;
-            color: #666;
-            font-family: var(--font-accent);
-        }
-
-        /* Card Styles */
-        .card, .exercise-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 25px var(--shadow-color);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px var(--shadow-color);
-        }
-
-        .exercise-card {
-            background: linear-gradient(135deg, var(--exercise-bg), #e8f4ff);
-            border-left: 6px solid var(--secondary-accent);
-        }
-
-        .card h3, .exercise-card h3 {
-            font-family: var(--font-heading);
-            font-size: 1.9em;
-            color: var(--accent-color);
-            margin-top: 0;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        .exercise-card h3 {
-            color: var(--secondary-accent);
-        }
-
-        .card h4 {
-            font-family: var(--font-heading);
-            font-size: 1.5em;
-            color: var(--header-color);
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-
-        /* Typography */
-        .pronunciation {
-            font-weight: bold;
-            font-size: 1.3em;
-            color: #555;
-            background: linear-gradient(135deg, #f7f7f7, #efefef);
-            padding: 12px 18px;
-            border-radius: 8px;
-            display: inline-block;
-            border: 2px solid #ddd;
-            margin: 10px 0;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .meaning {
-            font-style: italic;
-            color: var(--accent-color);
-            font-size: 1.1em;
-            margin-top: 5px;
-        }
-
-        .details {
-            margin-top: 20px;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
-
-        /* Pro Tips */
-        .pro-tip {
-            background: linear-gradient(135deg, var(--tip-bg), #fff5d6);
-            border: 2px solid #f0d785;
-            border-left: 6px solid var(--accent-color);
-            padding: 20px 25px;
-            margin: 25px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(183, 67, 67, 0.1);
-        }
-
-        [dir="rtl"].pro-tip {
-            border-left: 2px solid #f0d785;
-            border-right: 6px solid var(--accent-color);
-        }
-
-        .pro-tip h4 {
-            margin-top: 0;
-            font-size: 1.3em;
-            color: var(--accent-color);
-            font-family: var(--font-heading);
-        }
-
-        /* Lists */
-        .details-list {
-            padding-left: 25px;
-            list-style-type: none;
-        }
-
-        .details-list li {
-            position: relative;
-            margin-bottom: 12px;
-            padding-left: 10px;
-        }
-
-        .details-list li::before {
-            content: "▸";
-            color: var(--accent-color);
-            position: absolute;
-            left: -15px;
-            font-weight: bold;
-        }
-
-        [dir="rtl"] .details-list {
-            padding-left: 0;
-            padding-right: 25px;
-        }
-
-        [dir="rtl"] .details-list li::before {
-            left: auto;
-            right: -15px;
-            content: "◂";
-        }
-
-        /* Columns */
-        .columns {
-            columns: 2;
-            column-gap: 30px;
-            break-inside: avoid;
-        }
-
-        @media (max-width: 600px) {
-            .columns {
-                columns: 1;
-            }
-        }
-
-        /* Audio & Interactive Elements */
-        .audio-container {
-            background: linear-gradient(135deg, #ffffff, #f8f9fa);
-            padding: 20px;
-            border-radius: 12px;
-            margin: 25px 0;
-            border: 2px solid var(--border-color);
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-
-        .audio-container span {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--header-color);
-            font-size: 1.1em;
-        }
-
-        audio {
-            width: 100%;
-            max-width: 400px;
-            height: 45px;
-            border-radius: 25px;
-            background: var(--accent-color);
-        }
-
-        /* Interactive Pronunciation */
-        .pronunciation-box {
-            background: linear-gradient(135deg, #e8f4ff, #f0f8ff);
-            border: 2px solid var(--secondary-accent);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .pronunciation-large {
-            font-size: 2em;
-            font-weight: bold;
-            color: var(--secondary-accent);
-            margin-bottom: 10px;
-            font-family: var(--font-heading);
-        }
-
-        /* Verb Conjugation Tables */
-        .verb-table {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 20px 0;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            border: 1px solid var(--border-color);
-        }
-
-        .verb-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .verb-table th {
-            background: var(--accent-color);
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-family: var(--font-heading);
-            font-size: 1.2em;
-        }
-
-        .verb-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .verb-table tr:nth-child(even) {
-            background: #fafafa;
-        }
-
-        .verb-table .verb-form {
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        /* Tags and Special Elements */
-        .tag {
-            font-size: 0.8em;
-            background: linear-gradient(135deg, var(--secondary-accent), #4a8bc2);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            vertical-align: middle;
-            margin-left: 10px;
-            font-weight: 600;
-            box-shadow: 0 2px 5px rgba(90, 153, 227, 0.3);
-        }
-
-        /* Dialogue Boxes */
-        .dialogue {
-            background: linear-gradient(135deg, #f8f9fa, #ffffff);
-            border: 2px solid var(--secondary-accent);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-            box-shadow: 0 5px 20px rgba(90, 153, 227, 0.1);
-        }
-
-        .dialogue p {
-            margin: 0 0 15px 0;
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        .dialogue p:last-child {
-            margin-bottom: 0;
-        }
-
-        .dialogue strong {
-            color: var(--secondary-accent);
-            font-weight: 700;
-        }
-
-        /* Interactive Elements */
-        .interactive-section {
-            background: linear-gradient(135deg, rgba(183, 67, 67, 0.05), rgba(183, 67, 67, 0.02));
-            border: 2px dashed var(--accent-color);
-            border-radius: 15px;
-            padding: 25px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .practice-button {
-            background: linear-gradient(135deg, var(--accent-color), #a03939);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: var(--font-body);
-            font-weight: 600;
-            margin: 10px;
-            box-shadow: 0 4px 15px rgba(183, 67, 67, 0.3);
-        }
-
-        .practice-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(183, 67, 67, 0.4);
-        }
-
-        /* Cultural Context Boxes */
-        .cultural-note {
-            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
-            border-left: 6px solid #28a745;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.1);
-        }
-
-        .cultural-note h4 {
-            color: #28a745;
-            margin-top: 0;
-            font-family: var(--font-heading);
-        }
-
-        /* Number Grid */
-        .number-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .number-item {
-            background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .number-item:hover {
-            background: var(--tip-bg);
-            border-color: var(--accent-color);
-            transform: scale(1.05);
-        }
-
-        .number-french {
-            font-size: 1.3em;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-        }
-
-        .number-arabic {
-            font-size: 0.9em;
-            color: #666;
-            direction: rtl;
-        }
-
-        /* Calendar Grid */
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .day-item, .month-item {
-            background: white;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .day-item:hover, .month-item:hover {
-            background: var(--exercise-bg);
-            border-color: var(--secondary-accent);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            header {
-                padding: 25px 15px;
-            }
-            
-            .card, .exercise-card {
-                padding: 20px;
-            }
-            
-            .number-grid {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 10px;
-            }
-        }
-
-        /* RTL Support */
-        [dir="rtl"] {
-            text-align: right;
-        }
-
-        [dir="rtl"] .details-list {
-            padding-right: 25px;
-            padding-left: 0;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        /* Special highlights */
-        .highlight {
-            background: linear-gradient(120deg, transparent 0%, rgba(183, 67, 67, 0.1) 50%, transparent 100%);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .french-word {
-            font-weight: 600;
-            color: var(--secondary-accent);
-            font-style: italic;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Mon Carnet de Voyage en Français</h1>
-            <p>An Artistic Journey into the French Language</p>
-            <div class="subtitle-arabic">رحلتي الفنية في تعلم اللغة الفرنسية</div>
-        </header>
-
-        <nav class="nav-container">
-            <div class="nav-grid">
-                <a href="#module1" class="nav-item">Module 1: Les Fondations</a>
-                <a href="#module2" class="nav-item">Module 2: L'Atelier de Prononciation</a>
-                <a href="#module3" class="nav-item">Module 3: Les Nombres et le Calendrier</a>
-                <a href="#module4" class="nav-item">Module 4: Le Monde Autour de Nous</a>
-                <a href="#module5" class="nav-item">Module 5: La Boîte à Outils</a>
-            </div>
-        </nav>
-
-        <!-- MODULE 1: LES FONDATIONS -->
-        <section id="module1" class="chapter">
-            <h2>Module 1: Les Fondations</h2>
-            <div class="chapter-description">أساسيات المحادثة - The essential building blocks for your very first conversation</div>
-
-            <div class="card">
-                <h3>🌅 Greetings & First Impressions (التحية والانطباع الأول)</h3>
-                
-                <div class="cultural-note">
-                    <h4>🇫🇷 Cultural Context</h4>
-                    <p>In France, greetings are more than words—they're a social ritual. A proper <span class="french-word">bonjour</span> with eye contact shows respect and politeness. French people value this formality, especially when entering shops or meeting someone new.</p>
-                    <p dir="rtl">في فرنسا، التحية ليست مجرد كلمات - إنها طقوس اجتماعية. قول "بونجور" مع النظر في العينين يُظهر الاحترام والأدب.</p>
-                </div>
-
-                <div class="pronunciation-box">
-                    <div class="pronunciation-large">Bonjour!</div>
-                    <div class="pronunciation" dir="rtl">النطق: بون-چووور</div>
-                    <div class="meaning">Good morning / Good day (used all day long)</div>
-                </div>
-
-                <div class="pro-tip" dir="rtl">
-                    <h4>🎯 أسرار النطق المثالي:</h4>
-                    <ul>
-                        <li><strong>المقطع الأول "Bon":</strong> ليس "بُن" عادية! هذه بها غُنّة خفيفة من الأنف، مثل "on" في "song" الإنجليزية ولكن دون إغلاق الفم نهائياً.</li>
-                        <li><strong>المقطع الثاني "jour":</strong> الـ "j" هنا هي الـ "چ" المصرية (مثل چاكيت). الـ "r" هي الـ "R" الفرنسية من الحلق (أقرب لصوت الغين الخفيفة).</li>
-                    </ul>
-                </div>
-
-                <div class="pronunciation-box">
-                    <div class="pronunciation-large">Bonsoir!</div>
-                    <div class="pronunciation" dir="rtl">النطق: بون-سواار</div>
-                    <div class="meaning">Good evening</div>
-                </div>
-
-                <div class="audio-container">
-                    <span>🎧 Listen to these greetings in conversation:</span>
-                    <p><em>Audio file: L00_act01.mp3</em></p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>👤 Introductions & Meeting People</h3>
-
-                <div class="pronunciation-box">
-                    <div class="pronunciation-large">Je m'appelle...</div>
-                    <div class="pronunciation" dir="rtl">النطق: چوه ما-پيل...</div>
-                    <div class="meaning">My name is... / I am called...</div>
-                </div>
-
-                <div class="pro-tip" dir="rtl">
-                    <h4>🔍 تحليل النطق التفصيلي:</h4>
-                    <ul>
-                        <li><strong>"Je":</strong> ليس "چيه" صريحة! إنها أقرب لـ "zhuh" - صوت رخيم وقصير مثل حرف الـ s في "pleasure" الإنجليزية.</li>
-                        <li><strong>"m'appelle":</strong> هذا اختصار لـ "me appelle" - الحرف المتحرك يُحذف ويُستبدل بعلامة الاختصار '.</li>
-                    </ul>
-                </div>
-
-                <div class="pronunciation-box">
-                    <div class="pronunciation-large">Enchanté! / Enchantée!</div>
-                    <div class="pronunciation" dir="rtl">النطق: أون-شون-تيه</div>
-                    <div class="meaning">Nice to meet you! (Enchanté for males, Enchantée for females - same pronunciation)</div>
-                </div>
-
-                <div class="cultural-note">
-                    <h4>⚖️ Gender Agreement in French</h4>
-                    <p>Notice how <span class="french-word">Enchanté</span> changes spelling based on who is speaking! This is your first taste of <strong>gender agreement</strong> - one of French's most important concepts.</p>
-                    <p dir="rtl">لاحظ كيف تتغير كتابة "Enchanté" حسب جنس المتحدث! هذه أول تجربة لك مع مفهوم "التطابق الجنسي" - من أهم مفاهيم الفرنسية.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>💗 How Are You? (عامل إيه؟)</h3>
-
-                <div class="pronunciation-box">
-                    <div class="pronunciation-large">Comment allez-vous?</div>
-                    <div class="pronunciation" dir="rtl">النطق: كو-مون تا-ليه ڤو؟</div>
-                    <div class="meaning">How are you? <span class="tag">Formal/Respectful</span></div>
-                </div>
-
-                <div class="pro-tip" dir="rtl">
-                    <h4>🎭 سر الطلاقة الفرنسية - ظاهرة الـ Liaison:</h4>
-                    <p>هذا أهم سر في النطق الفرنسي! كلمة "Comment" تنتهي بـ "t" صامتة، وكلمة "allez" تبدأ بـ "a" متحركة. في هذه الحالة، الفرنسيون يربطون الحرف الساكن بالمتحرك، فتسمعها "كو-مون-تا-ليه" وليس "كومون أليه".</p>
-                    <p><strong>القاعدة:</strong> حرف ساكن + حرف متحرك = ربط صوتي (Liaison)</p>
-                </div>
-
-                <div class="pronunciation-box">
-                    <div class="pronunciation-large">Ça va?</div>
-                    <div class="pronunciation" dir="rtl">النطق: صا ڤا؟</div>
-                    <div class="meaning">How's it going? <span class="tag">Informal/Friends</span></div>
-                </div>
-
-                <h4>🗣️ Common Responses (الردود الشائعة):</h4>
-                <div class="verb-table">
-                    <table>
-                        <tr>
-                            <th>French</th>
-                            <th>Pronunciation (النطق)</th>
-                            <th>Meaning</th>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Très bien</td>
-                            <td>تريه بيان</td>
-                            <td>Very well</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Bien</td>
-                            <td>بيان</td>
-                            <td>Well/Good</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Ça va</td>
-                            <td>صا ڤا</td>
-                            <td>I'm okay</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Pas mal</td>
-                            <td>پا مال</td>
-                            <td>Not bad</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Bof...</td>
-                            <td>بوف</td>
-                            <td>Meh... (with facial expression!)</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="audio-container">
-                    <span>🎧 Listen to these conversations:</span>
-                    <p><em>Audio files: L00_act03.mp3, L00_act04.mp3, L00_act05.mp3</em></p>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>🏗️ The Building Blocks: Subject Pronouns & Essential Verbs</h3>
-                <p>To say anything meaningful in French, you need a <strong>person</strong> (pronoun) and an <strong>action</strong> (verb). Let's master the most important foundations:</p>
-
-                <h4>👥 Subject Pronouns (ضمائر الفاعل)</h4>
-                <div class="verb-table">
-                    <table>
-                        <tr>
-                            <th>French</th>
-                            <th>English</th>
-                            <th>When to Use</th>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Je (J')</td>
-                            <td>I</td>
-                            <td>Always for yourself</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Tu</td>
-                            <td>You</td>
-                            <td>Friends, family, children</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Il / Elle</td>
-                            <td>He / She</td>
-                            <td>Third person singular</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Nous</td>
-                            <td>We</td>
-                            <td>Including yourself in a group</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Vous</td>
-                            <td>You</td>
-                            <td>Strangers, groups, showing respect</td>
-                        </tr>
-                        <tr>
-                            <td class="verb-form">Ils / Elles</td>
-                            <td>They</td>
-                            <td>Ils: all-male or mixed groups<br>Elles: all-female groups</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="cultural-note">
-                
+/* -- Color Palette & Fonts -- */
+:root {
+    --bg-color: #fdf6e8; /* Creamy paper background */
+    --text-color: #3a3a3a; /* Dark gray for text */
+    --header-color: #4a2c2a; /* Deep brown for main titles */
+    --accent-color: #b74343; /* Muted red for accents */
+    --card-bg: #ffffff; /* White for the cards */
+    --tip-bg: #fff8eb; /* Light yellow for tip boxes */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+/* -- General Styles -- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Ensure proper text alignment for LTR/RTL content */
+[dir="rtl"] {
+    text-align: right;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    border-bottom: 3px double var(--header-color);
+    padding-bottom: 20px;
+}
+header h1 { font-family: var(--font-heading); font-size: 3.5em; color: var(--header-color); margin: 0; }
+header p { font-size: 1.2em; font-style: italic; color: var(--accent-color); }
+main { max-width: 800px; margin: 0 auto; }
+footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.9em; color: #777; }
+
+
+/* -- Chapter Styles -- */
+.chapter { margin-bottom: 60px; }
+.chapter h2 { font-family: var(--font-heading); font-size: 2.5em; color: var(--header-color); text-align: center; margin-bottom: 10px; }
+.chapter-description { text-align: center; font-size: 1.1em; font-style: italic; margin-bottom: 40px; color: #555; }
+.chapter-image { width: 100%; max-width: 500px; display: block; margin: 20px auto 30px; border-radius: 5px; box-shadow: 0 5px 15px var(--shadow-color); border: 8px solid white; }
+.decorative-image { max-width: 200px; display: block; margin: 20px auto; opacity: 0.5; }
+.inline-image { max-width: 100%; border-radius: 4px; margin: 10px 0; }
+
+/* -- The Learning Cards -- */
+.card { background-color: var(--card-bg); border: 1px solid #eee; border-radius: 8px; padding: 25px; margin-bottom: 25px; box-shadow: 0 4px 10px var(--shadow-color); }
+.card h3 { font-family: var(--font-heading); font-size: 1.8em; color: var(--accent-color); margin-top: 0; margin-bottom: 15px; }
+.card h4 { font-family: var(--font-heading); font-size: 1.4em; color: var(--header-color); margin-top: 20px; }
+.card h4.sub-heading { margin-top: 25px; padding-top: 15px; border-top: 1px solid #eee; }
+
+.pronunciation { font-weight: bold; font-size: 1.2em; color: #555; background-color: #f7f7f7; padding: 8px 12px; border-radius: 5px; display: inline-block; border: 1px solid #eee; }
+.card .details { margin-top: 15px; font-size: 1.1em; }
+.details-list { padding-left: 20px; list-style-type: disc; }
+[dir="rtl"] .details-list { padding-left: 0; padding-right: 20px; }
+[dir="rtl"] .details-list p, [dir="rtl"] .details-list .pronunciation { text-align: right; }
+
+/* -- The Special 'Pro Tip' Box for Detailed Explanations -- */
+.pro-tip {
+    background-color: var(--tip-bg);
+    border: 1px solid #eaddc0;
+    border-left: 4px solid var(--accent-color);
+    padding: 15px 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 1em;
+}
+[dir="rtl"].pro-tip {
+    border-left: none;
+    border-right: 4px solid var(--accent-color);
+}
+.pro-tip h4 { margin-top: 0; font-size: 1.2em; color: var(--accent-color); }
+.pro-tip ul { padding-left: 20px; margin-top: 10px; margin-bottom: 5px;}
+[dir="rtl"] .pro-tip ul { padding-left: 0; padding-right: 20px; }
+.pro-tip p { margin-top: 5px; }
+
+
+/* -- Other Styles -- */
+.tag { font-size: 0.7em; background-color: #eef2f5; color: #3b5998; padding: 3px 8px; border-radius: 10px; vertical-align: middle; margin-left: 10px; }
+audio { width: 100%; margin-top: 10px; height: 40px; }
+.audio-container { text-align: left; background: #fff; padding: 15px; border-radius: 5px; margin: 20px auto 30px; border: 1px solid #eaddc0; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.audio-container span { display: block; font-weight: bold; margin-bottom: 10px; color: var(--header-color); }
+hr.section-divider { border: 0; height: 1px; background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); margin: 50px 0; }
+
+/* -- Exercise Card Styling -- */
+.exercise-card { background: #eef2f5; border: 1px solid #d0dbe6; border-radius: 8px; padding: 25px; margin-bottom: 25px; }
+.exercise-card h3 { font-family: var(--font-heading); color: #3b5998; margin-top: 0; }
+
+/* -- Verb and Dialogue Styles -- */
+.verb-conjugation {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 15px;
+}
+.verb-conjugation li {
+    padding: 8px 12px;
+    border-left: 3px solid var(--accent-color);
+    margin-bottom: 5px;
+    background-color: #fafafa;
+}
+
+.dialogue {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-left: 4px solid #5a99e3;
+    padding: 20px;
+    border-radius: 5px;
+}
+.dialogue p { margin: 0 0 10px 0; }
+.dialogue p:last-child { margin-bottom: 0; }
+
+/* -- Alphabet & Columns -- */
+.alphabet-list, .columns { list-style: none; padding: 0; columns: 2; -webkit-columns: 2; -moz-columns: 2; column-gap: 30px; }
+.alphabet-list li, .columns li { padding: 5px 0; }
