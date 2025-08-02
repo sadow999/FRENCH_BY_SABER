@@ -3,391 +3,767 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier de Français - Mon Carnet de Voyage</title>
-    <!-- Google Fonts -->
+    <title>Mon Carnet de Voyage en Français - Interactive Learning</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Our Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fdf6e8;
+            --text-color: #2c2c2c;
+            --header-color: #4a2c2a;
+            --accent-color: #b74343;
+            --secondary-accent: #5a99e3;
+            --card-bg: #ffffff;
+            --tip-bg: #fff8eb;
+            --exercise-bg: #f0f7ff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-color: #e0d0b8;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --font-accent: 'Crimson Text', serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-color) 0%, #f8f1e0 100%);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 2px solid var(--border-color);
+        }
+
+        header h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5em, 5vw, 4em);
+            color: var(--header-color);
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header p {
+            font-size: 1.3em;
+            font-style: italic;
+            color: var(--accent-color);
+            margin: 10px 0 0 0;
+            font-family: var(--font-accent);
+        }
+
+        .subtitle-arabic {
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+            direction: rtl;
+            text-align: center;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .nav-item {
+            background: linear-gradient(135deg, var(--secondary-accent), #4a8bc2);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(90, 153, 227, 0.3);
+        }
+
+        /* Chapter Styles */
+        .chapter {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .chapter.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chapter h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2em, 4vw, 2.8em);
+            color: var(--header-color);
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .chapter-description {
+            text-align: center;
+            font-size: 1.2em;
+            font-style: italic;
+            margin-bottom: 40px;
+            color: #666;
+            font-family: var(--font-accent);
+        }
+
+        /* Card Styles */
+        .card, .exercise-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px var(--shadow-color);
+        }
+
+        .exercise-card {
+            background: linear-gradient(135deg, var(--exercise-bg), #e8f4ff);
+            border-left: 6px solid var(--secondary-accent);
+        }
+
+        .card h3, .exercise-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.9em;
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .exercise-card h3 {
+            color: var(--secondary-accent);
+        }
+
+        .card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.5em;
+            color: var(--header-color);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Typography */
+        .pronunciation {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #555;
+            background: linear-gradient(135deg, #f7f7f7, #efefef);
+            padding: 12px 18px;
+            border-radius: 8px;
+            display: inline-block;
+            border: 2px solid #ddd;
+            margin: 10px 0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .meaning {
+            font-style: italic;
+            color: var(--accent-color);
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .details {
+            margin-top: 20px;
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* Pro Tips */
+        .pro-tip {
+            background: linear-gradient(135deg, var(--tip-bg), #fff5d6);
+            border: 2px solid #f0d785;
+            border-left: 6px solid var(--accent-color);
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(183, 67, 67, 0.1);
+        }
+
+        [dir="rtl"].pro-tip {
+            border-left: 2px solid #f0d785;
+            border-right: 6px solid var(--accent-color);
+        }
+
+        .pro-tip h4 {
+            margin-top: 0;
+            font-size: 1.3em;
+            color: var(--accent-color);
+            font-family: var(--font-heading);
+        }
+
+        /* Lists */
+        .details-list {
+            padding-left: 25px;
+            list-style-type: none;
+        }
+
+        .details-list li {
+            position: relative;
+            margin-bottom: 12px;
+            padding-left: 10px;
+        }
+
+        .details-list li::before {
+            content: "▸";
+            color: var(--accent-color);
+            position: absolute;
+            left: -15px;
+            font-weight: bold;
+        }
+
+        [dir="rtl"] .details-list {
+            padding-left: 0;
+            padding-right: 25px;
+        }
+
+        [dir="rtl"] .details-list li::before {
+            left: auto;
+            right: -15px;
+            content: "◂";
+        }
+
+        /* Columns */
+        .columns {
+            columns: 2;
+            column-gap: 30px;
+            break-inside: avoid;
+        }
+
+        @media (max-width: 600px) {
+            .columns {
+                columns: 1;
+            }
+        }
+
+        /* Audio & Interactive Elements */
+        .audio-container {
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border: 2px solid var(--border-color);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .audio-container span {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--header-color);
+            font-size: 1.1em;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 400px;
+            height: 45px;
+            border-radius: 25px;
+            background: var(--accent-color);
+        }
+
+        /* Interactive Pronunciation */
+        .pronunciation-box {
+            background: linear-gradient(135deg, #e8f4ff, #f0f8ff);
+            border: 2px solid var(--secondary-accent);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .pronunciation-large {
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--secondary-accent);
+            margin-bottom: 10px;
+            font-family: var(--font-heading);
+        }
+
+        /* Verb Conjugation Tables */
+        .verb-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .verb-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .verb-table th {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-family: var(--font-heading);
+            font-size: 1.2em;
+        }
+
+        .verb-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .verb-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+
+        .verb-table .verb-form {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        /* Tags and Special Elements */
+        .tag {
+            font-size: 0.8em;
+            background: linear-gradient(135deg, var(--secondary-accent), #4a8bc2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            vertical-align: middle;
+            margin-left: 10px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(90, 153, 227, 0.3);
+        }
+
+        /* Dialogue Boxes */
+        .dialogue {
+            background: linear-gradient(135deg, #f8f9fa, #ffffff);
+            border: 2px solid var(--secondary-accent);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 20px rgba(90, 153, 227, 0.1);
+        }
+
+        .dialogue p {
+            margin: 0 0 15px 0;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .dialogue p:last-child {
+            margin-bottom: 0;
+        }
+
+        .dialogue strong {
+            color: var(--secondary-accent);
+            font-weight: 700;
+        }
+
+        /* Interactive Elements */
+        .interactive-section {
+            background: linear-gradient(135deg, rgba(183, 67, 67, 0.05), rgba(183, 67, 67, 0.02));
+            border: 2px dashed var(--accent-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .practice-button {
+            background: linear-gradient(135deg, var(--accent-color), #a03939);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            font-weight: 600;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(183, 67, 67, 0.3);
+        }
+
+        .practice-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(183, 67, 67, 0.4);
+        }
+
+        /* Cultural Context Boxes */
+        .cultural-note {
+            background: linear-gradient(135deg, #e8f5e8, #f0f8f0);
+            border-left: 6px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.1);
+        }
+
+        .cultural-note h4 {
+            color: #28a745;
+            margin-top: 0;
+            font-family: var(--font-heading);
+        }
+
+        /* Number Grid */
+        .number-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .number-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .number-item:hover {
+            background: var(--tip-bg);
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .number-french {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .number-arabic {
+            font-size: 0.9em;
+            color: #666;
+            direction: rtl;
+        }
+
+        /* Calendar Grid */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .day-item, .month-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .day-item:hover, .month-item:hover {
+            background: var(--exercise-bg);
+            border-color: var(--secondary-accent);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            header {
+                padding: 25px 15px;
+            }
+            
+            .card, .exercise-card {
+                padding: 20px;
+            }
+            
+            .number-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
+            }
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .details-list {
+            padding-right: 25px;
+            padding-left: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Special highlights */
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, rgba(183, 67, 67, 0.1) 50%, transparent 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .french-word {
+            font-weight: 600;
+            color: var(--secondary-accent);
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Mon Carnet de Voyage en Français</h1>
+            <p>An Artistic Journey into the French Language</p>
+            <div class="subtitle-arabic">رحلتي الفنية في تعلم اللغة الفرنسية</div>
+        </header>
 
-    <header>
-        <h1>Mon Carnet de Voyage en Français</h1>
-        <p>An Artistic Journey into the French Language</p>
-    </header>
+        <nav class="nav-container">
+            <div class="nav-grid">
+                <a href="#module1" class="nav-item">Module 1: Les Fondations</a>
+                <a href="#module2" class="nav-item">Module 2: L'Atelier de Prononciation</a>
+                <a href="#module3" class="nav-item">Module 3: Les Nombres et le Calendrier</a>
+                <a href="#module4" class="nav-item">Module 4: Le Monde Autour de Nous</a>
+                <a href="#module5" class="nav-item">Module 5: La Boîte à Outils</a>
+            </div>
+        </nav>
 
-    <main>
-
-        <!-- ========= MODULE 1: LES FONDATIONS (THE FOUNDATIONS) ========= -->
-        <section class="chapter">
-            <h2>Module 1: Les Fondations  (أساسيات المحادثة)</h2>
-            <p class="chapter-description">The essential building blocks for your very first conversation, from greetings to core verbs.</p>
-            <img src="images/1.png" alt="A welcoming Parisian cafe entrance" class="chapter-image">
+        <!-- MODULE 1: LES FONDATIONS -->
+        <section id="module1" class="chapter">
+            <h2>Module 1: Les Fondations</h2>
+            <div class="chapter-description">أساسيات المحادثة - The essential building blocks for your very first conversation</div>
 
             <div class="card">
-                <h3>Greetings & Politeness (التحية والتعارف)</h3>
-                <div class="audio-container"><span>Listen to these greetings in a conversation:</span><audio controls src="audio/L00_act01.mp3"></audio></div>
+                <h3>🌅 Greetings & First Impressions (التحية والانطباع الأول)</h3>
+                
+                <div class="cultural-note">
+                    <h4>🇫🇷 Cultural Context</h4>
+                    <p>In France, greetings are more than words—they're a social ritual. A proper <span class="french-word">bonjour</span> with eye contact shows respect and politeness. French people value this formality, especially when entering shops or meeting someone new.</p>
+                    <p dir="rtl">في فرنسا، التحية ليست مجرد كلمات - إنها طقوس اجتماعية. قول "بونجور" مع النظر في العينين يُظهر الاحترام والأدب.</p>
+                </div>
 
-                <h4>Bonjour!</h4>
-                <p class="pronunciation" dir="rtl">النطق: بون-چووور</p>
-                <div class="details" dir="rtl"><strong>المعنى:</strong> صباح الخير / نهارك سعيد (تستخدم طوال اليوم).</div>
+                <div class="pronunciation-box">
+                    <div class="pronunciation-large">Bonjour!</div>
+                    <div class="pronunciation" dir="rtl">النطق: بون-چووور</div>
+                    <div class="meaning">Good morning / Good day (used all day long)</div>
+                </div>
+
                 <div class="pro-tip" dir="rtl">
-                    <h4>تفاصيل النطق الدقيق:</h4>
+                    <h4>🎯 أسرار النطق المثالي:</h4>
                     <ul>
-                        <li>المقطع الأول "Bon" مش "بُن" عادية. دي فيها غُنّة خفيفة من الأنف، زي الـ "on" في كلمة "song" بالانجليزي بس من غير ما تقفل بقك في الآخر.</li>
-                        <li>المقطع التاني "jour"، الـ "j" هنا هي الـ "چ" المصرية (زي چاكيت). الـ "r" هي الـ "R" الفرنسية اللي من الحلق (أقرب لصوت الغين الخفيفة).</li>
+                        <li><strong>المقطع الأول "Bon":</strong> ليس "بُن" عادية! هذه بها غُنّة خفيفة من الأنف، مثل "on" في "song" الإنجليزية ولكن دون إغلاق الفم نهائياً.</li>
+                        <li><strong>المقطع الثاني "jour":</strong> الـ "j" هنا هي الـ "چ" المصرية (مثل چاكيت). الـ "r" هي الـ "R" الفرنسية من الحلق (أقرب لصوت الغين الخفيفة).</li>
                     </ul>
                 </div>
 
-                <h4 class="sub-heading">Bonsoir!</h4>
-                <p class="pronunciation" dir="rtl">النطق: بون-سواار</p>
-                <div class="details" dir="rtl"><strong>المعنى:</strong> مساء الخير.</div>
-                <div class="pro-tip" dir="rtl"><h4>تفاصيل النطق الدقيق:</h4><p>نفس غُنّة الـ "Bon" اللي فوق، ووراها "swar" واضحة.</p></div>
-            </div>
-            
-            <!-- NEW SECTION: ESSENTIAL VERBS & PRONOUNS -->
-            <div class="card">
-                <h3>The Core of a Sentence: Pronouns and Verbs</h3>
-                <p>To say anything meaningful, you need a person (a pronoun) and an action (a verb). Let's learn the two most important verbs in all of French.</p>
-                
-                <h4>Subject Pronouns (Les Pronoms Sujets)</h4>
-                <p>These are the words for "I", "you", "he", etc.</p>
-                <ul class="details-list">
-                    <li><strong>Je (j')</strong> - I</li>
-                    <li><strong>Tu</strong> - You (for one friend, family member)</li>
-                    <li><strong>Il / Elle</strong> - He / She</li>
-                    <li><strong>Nous</strong> - We</li>
-                    <li><strong>Vous</strong> - You (for a stranger, a group of people, or to show respect)</li>
-                    <li><strong>Ils / Elles</strong> - They (Ils for all-male or mixed groups, Elles for all-female groups)</li>
-                </ul>
+                <div class="pronunciation-box">
+                    <div class="pronunciation-large">Bonsoir!</div>
+                    <div class="pronunciation" dir="rtl">النطق: بون-سواار</div>
+                    <div class="meaning">Good evening</div>
+                </div>
 
-                <h4 class="sub-heading">The Verb 'Être' (To Be)</h4>
-                <p>This is your go-to verb for describing identity, professions, and states of being.</p>
-                <ul class="verb-conjugation">
-                    <li>Je <strong>suis</strong> (I am)</li>
-                    <li>Tu <strong>es</strong> (You are)</li>
-                    <li>Il/Elle <strong>est</strong> (He/She is)</li>
-                    <li>Nous <strong>sommes</strong> (We are)</li>
-                    <li>Vous <strong>êtes</strong> (You are)</li>
-                    <li>Ils/Elles <strong>sont</strong> (They are)</li>
-                </ul>
-                <div class="pro-tip"><strong>Example:</strong> "I am Egyptian" is <em>Je <strong>suis</strong> égyptien.</em></div>
-                
-                <h4 class="sub-heading">The Verb 'Avoir' (To Have)</h4>
-                <p>This verb is essential for talking about possession, age, and many expressions.</p>
-                <ul class="verb-conjugation">
-                    <li>J'<strong>ai</strong> (I have)</li>
-                    <li>Tu <strong>as</strong> (You have)</li>
-                    <li>Il/Elle <strong>a</strong> (He/She has)</li>
-                    <li>Nous <strong>avons</strong> (We have)</li>
-                    <li>Vous <strong>avez</strong> (You have)</li>
-                    <li>Ils/Elles <strong>ont</strong> (They have)</li>
-                </ul>
-                <div class="pro-tip"><strong>Example:</strong> "You have a question" is <em>Tu <strong>as</strong> une question.</em> or <em>Vous <strong>avez</strong> une question.</em></div>
-            </div>
-            <!-- END NEW SECTION -->
-            
-            <div class="card">
-                <h3>Introductions & "How Are You?"</h3>
-                <div class="audio-container"><span>Listen:</span><audio controls src="audio/L00_act03.mp3"></audio></div>
-                
-                <h4>Je m'appelle...</h4>
-                <p class="pronunciation" dir="rtl">النطق: چوه ما-پيل...</p>
-                <div class="pro-tip" dir="rtl"><h4>تفاصيل النطق الدقيق:</h4><ul><li>"Je" صوتها رخيم وقصير (zhuh), "m'appelle" بتتنطق ما-پيل.</li></ul></div>
-                
-                <h4>Enchanté! / Enchantée!</h4>
-                <p class="pronunciation" dir="rtl">النطق: أون-شون-تيه. (النطق واحد للاثنين)</p>
-                <div class="pro-tip" dir="rtl"><h4>تفاصيل النطق الدقيق:</h4><ul><li>"En" و "chan" كلاهما بهما غُنّة أنفية. `Enchanté` للولد, `Enchantée` للبنت.</li></ul></div>
-
-                <h4 class="sub-heading">Comment allez-vous ? <span class="tag">Formal / Plural</span></h4>
-                <p class="pronunciation" dir="rtl">النطق: كو-مون تا-ليه ڤو؟</p>
-                <div class="pro-tip" dir="rtl"><h4>سر النطق (مهم جدًا):</h4><p>ظاهرة الـ <strong>Liaison (الربط)</strong>. حرف "t" الساكن في `comment` يرتبط بحرف العلة "a" في `allez`، فتسمعها "تا-ليه". هذا سر الطلاقة!</p></div>
-
-                <h4 class="sub-heading">Ça va ? <span class="tag">Informal</span></h4>
-                <p class="pronunciation" dir="rtl">النطق: صا ڤا؟</p>
-                <div class="details" dir="rtl">هذه الطريقة الأكثر شيوعاً بين الأصدقاء والعائلة.</div>
-                
-                <h4 class="sub-heading">Replies (الردود ونطقها الدقيق):</h4>
-                <ul class="details-list" dir="rtl">
-                    <li><strong>Très bien:</strong> تريه بيان. (الـ "ien" في "bien" بها غُنّة "يان").</li>
-                    <li><strong>Ça va:</strong> صا ڤا.</li>
-                    <li><strong>Pas mal:</strong> پا مال.</li>
-                    <li><strong>Bof...:</strong> بوف. (كلمة تعتمد على تعبير الوجه ونفخة الهواء أكثر من الصوت).</li>
-                </ul>
-            </div>
-            
-            <img src="images/2.png" alt="Friends chatting informally" class="chapter-image">
-            <div class="audio-container">
-                <span>Listen to more dialogues and examples:</span>
-                <audio controls src="audio/L00_act04.mp3"></audio>
-                <audio controls src="audio/L00_act05.mp3"></audio>
-            </div>
-
-            <!-- NEW SECTION: DIALOGUE PRACTICE -->
-            <div class="exercise-card">
-                <h3>Putting It All Together: A First Dialogue</h3>
-                <p>Notice how `être` (to be) is used to state identity and nationality.</p>
-                <div class="dialogue">
-                    <p><strong>Ana:</strong> Bonjour! Je m'appelle Ana. Comment allez-vous?</p>
-                    <p><strong>Marc:</strong> Bonjour Ana! Je vais très bien, merci. Je m'appelle Marc. Enchanté!</p>
-                    <p><strong>Ana:</strong> Enchantée! Vous <strong>êtes</strong> français, Marc?</p>
-                    <p><strong>Marc:</strong> Non, je <strong>suis</strong> canadien. Et vous?</p>
-                    <p><strong>Ana:</strong> Je <strong>suis</strong> égyptienne.</p>
+                <div class="audio-container">
+                    <span>🎧 Listen to these greetings in conversation:</span>
+                    <p><em>Audio file: L00_act01.mp3</em></p>
                 </div>
             </div>
-             <img src="images/4.png" alt="Decorative flourish" class="decorative-image">
 
-        </section>
-
-
-        <!-- ========= MODULE 2: PRONUNCIATION WORKSHOP ========= -->
-        <section class="chapter">
-            <h2>Module 2: L'Atelier de Prononciation (الخلاصة التقنية)</h2>
-            <p class="chapter-description">Mastering the technical secrets that make you sound authentically French.</p>
-            <img src="images/5.png" alt="Vintage alphabet chart" class="chapter-image">
-
-            <!-- All detailed pronunciation notes are here, as they were in the beloved version -->
-             <div class="card">
-                <h3>The French Alphabet & Spelling</h3>
-                <div class="audio-container"><span>Listen to the Alphabet Song:</span><audio controls src="audio/NG Piste 002.mp3"></audio></div>
-                <ul class="alphabet-list">
-                    <li><strong>A:</strong> [a] ah</li> <li><strong>B:</strong> [be] bay</li> <li><strong>C:</strong> [se] say</li> <!-- and so on -->
-                </ul>
-            </div>
-            
             <div class="card">
-                <h3>The Rules of 'C' and 'G' (قاعدة حرف C و G)</h3>
+                <h3>👤 Introductions & Meeting People</h3>
+
+                <div class="pronunciation-box">
+                    <div class="pronunciation-large">Je m'appelle...</div>
+                    <div class="pronunciation" dir="rtl">النطق: چوه ما-پيل...</div>
+                    <div class="meaning">My name is... / I am called...</div>
+                </div>
+
                 <div class="pro-tip" dir="rtl">
-                    <h4>قاعدة حرف C:</h4>
+                    <h4>🔍 تحليل النطق التفصيلي:</h4>
                     <ul>
-                        <li><strong>يتنطق "كاف" (K):</strong> قبل A, O, U. أمثلة: <strong>co</strong>ca<strong>co</strong>la, <strong>ca</strong>lculatrice, <strong>cu</strong>be.</li>
-                        <li><strong>يتنطق "سين" (S):</strong> قبل E, I, Y. أمثلة: mer<strong>ci</strong>, <strong>ci</strong>nema.</li>
-                        <li><strong>إزاي ننطقه "سين" غصب عن القاعدة؟</strong> نستخدم العلامة السحرية <strong>Ç (Cedilla)</strong>. دي إشارة بتقولك "انطقني سين". أمثلة: fran<strong>ç</strong>ais, gar<strong>ç</strong>on.</li>
+                        <li><strong>"Je":</strong> ليس "چيه" صريحة! إنها أقرب لـ "zhuh" - صوت رخيم وقصير مثل حرف الـ s في "pleasure" الإنجليزية.</li>
+                        <li><strong>"m'appelle":</strong> هذا اختصار لـ "me appelle" - الحرف المتحرك يُحذف ويُستبدل بعلامة الاختصار '.</li>
                     </ul>
-                    <h4>قاعدة حرف G:</h4>
-                     <ul>
-                        <li><strong>يتنطق "جيم" مصرية (Hard G):</strong> قبل A, O, U. أمثلة: <strong>ga</strong>rçon, <strong>go</strong>mme.</li>
-                        <li><strong>يتنطق "چيم" معطشة (Soft J):</strong> قبل E, I, Y. أمثلة: <strong>gi</strong>rafe, <strong>gi</strong>let.</li>
-                    </ul>
+                </div>
+
+                <div class="pronunciation-box">
+                    <div class="pronunciation-large">Enchanté! / Enchantée!</div>
+                    <div class="pronunciation" dir="rtl">النطق: أون-شون-تيه</div>
+                    <div class="meaning">Nice to meet you! (Enchanté for males, Enchantée for females - same pronunciation)</div>
+                </div>
+
+                <div class="cultural-note">
+                    <h4>⚖️ Gender Agreement in French</h4>
+                    <p>Notice how <span class="french-word">Enchanté</span> changes spelling based on who is speaking! This is your first taste of <strong>gender agreement</strong> - one of French's most important concepts.</p>
+                    <p dir="rtl">لاحظ كيف تتغير كتابة "Enchanté" حسب جنس المتحدث! هذه أول تجربة لك مع مفهوم "التطابق الجنسي" - من أهم مفاهيم الفرنسية.</p>
                 </div>
             </div>
 
             <div class="card">
-                <h3>Accents & Sound Groups (العلامات ومجموعات الحروف)</h3>
-                <div class="details" dir="rtl">
-                    <h4>العلامات (Accents) وتأثيرها على النطق:</h4>
-                    <ul>
-                        <li><strong>é (accent aigu):</strong> يجعل صوت الـ e "إيه" مقفولة وقصيرة. مثال: répét<strong>é</strong>r.</li>
-                        <li><strong>è (accent grave):</strong> يجعل صوت الـ e "إَه" مفتوحة. مثال: m<strong>è</strong>re.</li>
-                        <li><strong>ê (accent circonflexe):</strong> يطيل صوت الحرف قليلاً.</li>
-                        <li><strong>ë (tréma):</strong> يفصل الحرفين في النطق. مثال: No<strong>ë</strong>l (نو-إيل).</li>
-                        <li><strong>' (apostrophe):</strong> يحل محل حرف متحرك محذوف. مثال: Je aime (غلط) ← J'aime (صح).</li>
-                    </ul>
-                    <h4 class="sub-heading">مجموعات الحروف اللي صوتها واحد (أهم جزء):</h4>
-                     <ul>
-                        <li><strong>صوت "أُو" (like "go"):</strong> `o`, `eau`, `au` كلهم نفس النطق. أمثلة: ch<strong>a</strong>p<strong>eau</strong>.</li>
-                        <li><strong>صوت غريب (like 'u' in 'burn'):</strong> `e`, `eu`. ضم شفايفك كأنك بتقول "أووو" ومن هذا الوضع حاول أن تقول "إيه". أمثلة: ch<strong>e</strong>v<strong>eu</strong>, bl<strong>eu</strong>.</li>
-                        <li><strong>صوت الغُنّة الأنفي "ـان / ـون":</strong> `in`, `im`, `un`, `ain`, `ien` كلهم نفس صوت الغنة "ـان". أمثلة: lund<strong>i</strong>, p<strong>ain</strong>, égypt<strong>ien</strong>.</li>
-                        <li><strong>النهايات اللي بتتنطق "إيه":</strong> `ai`, `ais`, `er`, `ez`, `et`, `ait` كلهم صوتهم [e] (إيه). أمثلة: j'<strong>ai</strong>, all<strong>er</strong>.</li>
-                    </ul>
+                <h3>💗 How Are You? (عامل إيه؟)</h3>
+
+                <div class="pronunciation-box">
+                    <div class="pronunciation-large">Comment allez-vous?</div>
+                    <div class="pronunciation" dir="rtl">النطق: كو-مون تا-ليه ڤو؟</div>
+                    <div class="meaning">How are you? <span class="tag">Formal/Respectful</span></div>
                 </div>
-            </div>
 
-        </section>
-
-        <!-- ========= MODULE 3: DESCRIBING THE WORLD AROUND YOU ========= -->
-        <section class="chapter">
-            <h2>Module 3: Le Monde Autour de Nous (الحاجات اللي حوالينا)</h2>
-            <p class="chapter-description">Let's learn how to name objects using the golden rule of French: Gender and Plurals.</p>
-            <img src="images/12.png" alt="A drawing of a classroom" class="chapter-image">
-            
-            <div class="card">
-                <h3>Gender & Articles (المذكر والمؤنث)</h3>
-                <p>This is the most important concept in this module. In French, every single noun is either masculine or feminine. You learn the gender with the word.</p>
-                <div class="details" dir="rtl">
-                    <h4>أدوات التعريف (The):</h4>
-                    <ul>
-                        <li><strong>le</strong> للمفرد المذكر. مثال: <strong>le garçon</strong> (الولد).</li>
-                        <li><strong>la</strong> للمفرد المؤنث. مثال: <strong>la fenêtre</strong> (الشباك).</li>
-                    </ul>
-                     <h4>أدوات النكرة (A/An):</h4>
-                    <ul>
-                        <li><strong>un</strong> للمفرد المذكر. مثال: <strong>un garçon</strong> (ولد).</li>
-                        <li><strong>une</strong> للمفرد المؤنث. مثال: <strong>une fenêtre</strong> (شباك).</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="exercise-card">
-                <h3>Exercise: Masculin ou Féminin?</h3>
-                <p>Listen. Based on the article (`un` or `une`), is the word you hear Masculine or Feminine?</p>
-                <img src="images/13.png" alt="Masculine or Feminine exercise" class="chapter-image">
-                <div class="audio-container"><audio controls src="audio/NG Piste 003.mp3"></audio></div>
-            </div>
-
-             <div class="card">
-                <h3>Making Things Plural (الجمع)</h3>
-                <p>Once you know the singular, the plural is simple!</p>
-                <div class="details" dir="rtl">
-                    <ul>
-                        <li>"the" (<strong>le, la</strong>) تصبح <strong>les</strong> في الجمع.</li>
-                        <li>"a/an" (<strong>un, une</strong>) تصبح <strong>des</strong> (بمعنى 'some') في الجمع.</li>
-                        <li>لصياغة الجمع، نضيف حرف "s" صامت في نهاية معظم الأسماء.</li>
-                    </ul>
-                    <p><strong>أمثلة:</strong> un crayon → <strong>des</strong> crayon<strong>s</strong> | la chaise → <strong>les</strong> chaise<strong>s</strong></p>
-                </div>
-            </div>
-            
-             <div class="exercise-card">
-                <h3>Exercise: Singulier ou Pluriel?</h3>
-                <p>Listen carefully. Do you hear a singular word (`un, une, le, la`) or a plural one (`des, les`)?</p>
-                <img src="images/14.png" alt="Singular or Plural exercise" class="chapter-image">
-                <div class="audio-container"><audio controls src="audio/NG Piste 004.mp3"></audio></div>
-            </div>
-            
-            <div class="card">
-                <h3>Classroom Vocabulary (مفردات الفصل)</h3>
-                <ul class="columns details-list">
-                    <li>un crayon / des crayons</li>
-                    <li>un livre / des livres (book)</li>
-                    <li>une chaise / des chaises</li>
-                    <li>une table / des tables</li>
-                    <li>un élève / des élèves (student)</li>
-                    <li>un professeur / des professeurs</li>
-                    <li>une fenêtre / des fenêtres</li>
-                    <li>une porte / des portes (door)</li>
-                </ul>
-            </div>
-            <img src="images/15.png" alt="Students in a classroom" class="chapter-image">
-        </section>
-
-
-        <!-- ========= MODULE 4: NUMBERS & THE CALENDAR ========= -->
-        <section class="chapter">
-             <h2>Module 4: Les Chiffres et le Calendrier (الأرقام والتقويم)</h2>
-             <p class="chapter-description">Learn to count, read the calendar, and schedule appointments.</p>
-             <img src="images/6.png" alt="A French Market with price tags" class="chapter-image">
-
-            <!-- ALL detailed number and calendar notes are preserved here -->
-             <div class="card">
-                <h3>Les Nombres 0-30 (Numbers)</h3>
-                <div class="audio-container"><span>Listen to the numbers 0-20:</span><audio controls src="audio/NG Piste 006.mp3"></audio></div>
-                <ul class="columns details-list" dir="rtl">
-                    <li><strong>0:</strong> zéro (زيه-رو)</li>
-                    <li><strong>1:</strong> un (آن - بغُنّة)</li>
-                    <li><strong>2:</strong> deux (دو) - x صامتة</li>
-                    <li><strong>3:</strong> trois (تروا) - s صامتة</li>
-                    <li><strong>4:</strong> quatre (كاتر)</li>
-                    <li><strong>5:</strong> cinq (سانك)</li>
-                    <li><strong>6:</strong> six (سيس)</li>
-                    <li><strong>7:</strong> sept (سيت) - p صامتة</li>
-                    <li><strong>8:</strong> huit (ويت) - h صامتة</li>
-                    <li><strong>9:</strong> neuf (نوف)</li>
-                    <li><strong>10:</strong> dix (ديس)</li>
-                    <li><strong>11-16:</strong> onze, douze, treize, quatorze, quinze, seize</li>
-                    <li><strong>17:</strong> dix-sept (حرفيًا 10+7)</li>
-                    <li><strong>18:</strong> dix-huit (Liaison: ديز-ويت)</li>
-                    <li><strong>19:</strong> dix-neuf</li>
-                    <li><strong>20:</strong> vingt (ڤـان - gt صامتين)</li>
-                    <li><strong>21:</strong> vingt et un (ڤان تيه آن)</li>
-                    <li><strong>22:</strong> vingt-deux (ڤان-دو)</li>
-                    <li><strong>30:</strong> trente (ترونت)</li>
-                </ul>
-            </div>
-            
-            <div class="exercise-card">
-                <h3>Exercise: Listen and Distinguish</h3>
-                <p>Listen carefully to the audio. Which number do you hear in each pair?</p>
-                <img src="images/7.png" alt="Listening exercise for numbers" class="chapter-image">
-                <div class="audio-container"><audio controls src="audio/NG Piste 007.mp3"></audio></div>
                 <div class="pro-tip" dir="rtl">
-                    <h4>الفرق الدقيق في النطق:</h4>
-                    <ul>
-                        <li>[6 / 10]: six (سيس) vs dix (ديس)</li>
-                        <li>[6 / 16]: six (سيس) vs seize (سَـيـز - صوت أطول)</li>
-                        <!-- And so on for all pairs -->
-                    </ul>
+                    <h4>🎭 سر الطلاقة الفرنسية - ظاهرة الـ Liaison:</h4>
+                    <p>هذا أهم سر في النطق الفرنسي! كلمة "Comment" تنتهي بـ "t" صامتة، وكلمة "allez" تبدأ بـ "a" متحركة. في هذه الحالة، الفرنسيون يربطون الحرف الساكن بالمتحرك، فتسمعها "كو-مون-تا-ليه" وليس "كومون أليه".</p>
+                    <p><strong>القاعدة:</strong> حرف ساكن + حرف متحرك = ربط صوتي (Liaison)</p>
                 </div>
-            </div>
-             <div class="exercise-card">
-                <h3>Exercise: Associez une image avec un nombre</h3>
-                 <img src="images/8.png" alt="Match images to numbers exercise prompt" class="chapter-image">
-                 <p>Look at the image. It prompts you to match the items in a picture with their corresponding number. Try to describe what you see, e.g., "Il y a <strong>trois</strong> crayons."</p>
-             </div>
-            
-            <hr class="section-divider">
-            <div class="card">
-                <h3>The Calendar: Days, Months, and Dates</h3>
-                <img src="images/9.png" alt="A stylish calendar page" class="chapter-image">
-                <div class="details" dir="rtl">
-                    <h4>أيام الأسبوع (Les jours de la semaine): <div class="audio-container"><audio controls src="audio/NG Piste 015.mp3"></audio></div></h4>
-                    <ul class="columns">
-                        <li>le lundi</li><li>le mardi</li><li>le mercredi</li><li>le jeudi</li><li>le vendredi</li><li>le samedi</li><li>le dimanche</li>
-                    </ul>
-                    <img src="images/10.png" alt="Months of the year visual" class="inline-image">
-                    <h4 class="sub-heading">شهور السنة (Les mois de l'année): <div class="audio-container"><audio controls src="audio/NG Piste 016.mp3"></audio></div></h4>
-                    <ul class="columns">
-                       <li>janvier</li><li>février</li><li>mars</li><li>avril</li><li>mai</li><li>juin</li><li>juillet</li><li>août</li><li>septembre</li><li>octobre</li><li>novembre</li><li>décembre</li>
-                    </ul>
-                    <h4 class="sub-heading">Asking for the Date (السؤال عن التاريخ):</h4>
-                    <ul>
-                        <li>للسؤال "النهاردة إيه؟": <strong>Quel jour sommes-nous aujourd'hui?</strong></li>
-                        <li>الإجابة: <strong>Nous sommes le samedi.</strong> (النهاردة السبت.)</li>
-                        <li>للسؤال عن التاريخ: <strong>Quelle est la date d'aujourd'hui?</strong></li>
-                        <li>الإجابة: <strong>Nous sommes le 26 juillet.</strong></li>
-                    </ul>
-                </div>
-            </div>
-             <div class="exercise-card">
-                <h3>Re-Listen and Master</h3>
-                <img src="images/11.png" alt="Listening comprehension test prompt" class="chapter-image">
-                <p>This is a prompt to test your ear again. The audio is the same as the number-distinction exercise, helping you master those tricky sounds.</p>
-                <div class="audio-container"><audio controls src="audio/NG Piste 007.mp3"></audio></div>
-            </div>
-        </section>
 
-        <!-- ========= MODULE 5: THE SURVIVAL KIT ========= -->
-        <section class="chapter">
-            <h2>Module 5: La Boîte à Outils du Survivant (صندوق العدة)</h2>
-            <p class="chapter-description">Your essential phrases to ask questions and navigate any conversation like a pro.</p>
-            <img src="images/3.png" alt="Asking for directions in a french street" class="chapter-image">
-            <div class="card">
-                <h3>Key Survival Phrases</h3>
-                <div class="audio-container"><span>Listen to these phrases in action:</span><audio controls src="audio/L00_act06.mp3"></audio></div>
-                <ul class="details-list" dir="rtl">
-                    <li>
-                        <strong>Excusez-moi, comment dit-on «...» en français ?</strong>
-                        <p class="pronunciation">إكس-كوزيه موا، كو-مون دي-تون «...» أون فرون-سيه؟ (Note the Liaison in "dit-on")</p>
-                        <p><strong>المعنى:</strong> "Excuse me, how do you say '...' in French?"</p>
-                    </li>
-                    <li>
-                        <strong>Ça s'écrit comment ?</strong>
-                        <p class="pronunciation">صا سيه-كري كو-مون؟ ("s'écrit" بتتنطق كأنها كلمة واحدة "سيكري").</p>
-                        <p><strong>المعنى:</strong> "How is that written?"</p>
-                    </li>
-                    <li>
-                        <strong>Vous pouvez répéter, s'il vous plaît ?</strong>
-                        <p class="pronunciation">ڤو پو-ڤيه ريه-پيه-تيه، سيل ڤو پليه؟ (Try to say it with a musical rhythm).</p>
-                        <p><strong>المعنى:</strong> "Could you repeat that, please?"</p>
-                    </li>
-                    <li>
-                        <strong>Je ne comprends pas.</strong>
-                        <p class="pronunciation">چوه نوه كوم-پرون پا.</p>
-                        <p><strong>المعنى:</strong> "I don't understand." (Arguably more useful than "I don't know"!).</p>
-                    </li>
-                    <li>
-                        <strong>Je ne sais pas.</strong>
-                        <p class="pronunciation">چوه نوه سيه پا. (The `ne...pas` is what creates the negative).</p>
-                        <p><strong>المعنى:</strong> "I don't know."</p>
-                    </li>
-                </ul>
+                <div class="pronunciation-box">
+                    <div class="pronunciation-large">Ça va?</div>
+                    <div class="pronunciation" dir="rtl">النطق: صا ڤا؟</div>
+                    <div class="meaning">How's it going? <span class="tag">Informal/Friends</span></div>
+                </div>
+
+                <h4>🗣️ Common Responses (الردود الشائعة):</h4>
+                <div class="verb-table">
+                    <table>
+                        <tr>
+                            <th>French</th>
+                            <th>Pronunciation (النطق)</th>
+                            <th>Meaning</th>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Très bien</td>
+                            <td>تريه بيان</td>
+                            <td>Very well</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Bien</td>
+                            <td>بيان</td>
+                            <td>Well/Good</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Ça va</td>
+                            <td>صا ڤا</td>
+                            <td>I'm okay</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Pas mal</td>
+                            <td>پا مال</td>
+                            <td>Not bad</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Bof...</td>
+                            <td>بوف</td>
+                            <td>Meh... (with facial expression!)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="audio-container">
+                    <span>🎧 Listen to these conversations:</span>
+                    <p><em>Audio files: L00_act03.mp3, L00_act04.mp3, L00_act05.mp3</em></p>
+                </div>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>Created with ❤️ from personal French notes.</p>
-    </footer>
-</body>
-</html>
+
+            <div class="card">
+                <h3>🏗️ The Building Blocks: Subject Pronouns & Essential Verbs</h3>
+                <p>To say anything meaningful in French, you need a <strong>person</strong> (pronoun) and an <strong>action</strong> (verb). Let's master the most important foundations:</p>
+
+                <h4>👥 Subject Pronouns (ضمائر الفاعل)</h4>
+                <div class="verb-table">
+                    <table>
+                        <tr>
+                            <th>French</th>
+                            <th>English</th>
+                            <th>When to Use</th>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Je (J')</td>
+                            <td>I</td>
+                            <td>Always for yourself</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Tu</td>
+                            <td>You</td>
+                            <td>Friends, family, children</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Il / Elle</td>
+                            <td>He / She</td>
+                            <td>Third person singular</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Nous</td>
+                            <td>We</td>
+                            <td>Including yourself in a group</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Vous</td>
+                            <td>You</td>
+                            <td>Strangers, groups, showing respect</td>
+                        </tr>
+                        <tr>
+                            <td class="verb-form">Ils / Elles</td>
+                            <td>They</td>
+                            <td>Ils: all-male or mixed groups<br>Elles: all-female groups</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="cultural-note">
+                
