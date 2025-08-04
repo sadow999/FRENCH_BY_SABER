@@ -16,8 +16,288 @@
         <h1>Mon Carnet de Voyage en Français</h1>
         <p>An Artistic Journey into the French Language</p>
         <p class="subtitle" lang="ar">مذكراتي في رحلة تعلم اللغة الفرنسية</p>
+         <!-- Interactive Cheat Sheets Toggle Buttons -->
+        <nav class="cheat-sheet-nav">
+            <button class="cheat-sheet-btn" data-target="alphabet-cheat-sheet">Alphabet</button>
+            <button class="cheat-sheet-btn" data-target="accents-cheat-sheet">Accents</button>
+            <button class="cheat-sheet-btn" data-target="numbers-cheat-sheet">Numbers</button>
+            <button class="cheat-sheet-btn" data-target="days-cheat-sheet">Days</button>
+            <button class="cheat-sheet-btn" data-target="months-cheat-sheet">Months</button>
+        </nav>
     </header>
     <main>
+        <!-- ========= CHEAT SHEETS (Initially Hidden) ========= -->
+        <section id="cheat-sheets-container" class="cheat-sheets-container">
+             <!-- Alphabet Cheat Sheet -->
+            <div id="alphabet-cheat-sheet" class="cheat-sheet hidden">
+                <h3>The French Alphabet</h3>
+                 <div class="audio-container">
+                    <span>Listen to the Alphabet Song:</span>
+                    <span lang="ar" dir="rtl">استمع إلى أغنية الحروف:</span>
+                    <audio controls src="audio/NG Piste 002.mp3"></audio>
+                </div>
+                <ul class="alphabet-list">
+                    <li><strong>A:</strong> [a] ah</li>
+                    <li><strong>B:</strong> [be] bay</li>
+                    <li><strong>C:</strong> [se] say</li>
+                    <li><strong>D:</strong> [de] day</li>
+                    <li><strong>E:</strong> [ə] (schwa) or [e] (eh)</li>
+                    <li><strong>F:</strong> [ɛf] eff</li>
+                    <li><strong>G:</strong> [ʒe] zhay</li>
+                    <li><strong>H:</strong> [aʃ] ahsh (usually silent)</li>
+                    <li><strong>I:</strong> [i] ee</li>
+                    <li><strong>J:</strong> [ʒi] zhee</li>
+                    <li><strong>K:</strong> [ka] kah</li>
+                    <li><strong>L:</strong> [ɛl] ell</li>
+                    <li><strong>M:</strong> [ɛm] emm</li>
+                    <li><strong>N:</strong> [ɛn] enn</li>
+                    <li><strong>O:</strong> [o] oh</li>
+                    <li><strong>P:</strong> [pe] pay</li>
+                    <li><strong>Q:</strong> [ky] kee</li>
+                    <li><strong>R:</strong> [ɛʁ] air (guttural)</li>
+                    <li><strong>S:</strong> [ɛs] ess</li>
+                    <li><strong>T:</strong> [te] tay</li>
+                    <li><strong>U:</strong> [y] (like German ü)</li>
+                    <li><strong>V:</strong> [ve] vay</li>
+                    <li><strong>W:</strong> [dubləve] doo-bluh-vay</li>
+                    <li><strong>X:</strong> [iks] eeks</li>
+                    <li><strong>Y:</strong> [iɡʁɛk] ee-grek (or 'i' long)</li>
+                    <li><strong>Z:</strong> [zɛd] zed</li>
+                </ul>
+                <ul class="alphabet-list" dir="rtl" lang="ar">
+                    <li><strong>A:</strong> [a] أه</li>
+                    <li><strong>B:</strong> [be] به</li>
+                    <li><strong>C:</strong> [se] سه</li>
+                    <li><strong>D:</strong> [de] ده</li>
+                    <li><strong>E:</strong> [ə] (schwa) أو [e] (إيه)</li>
+                    <li><strong>F:</strong> [ɛf] أف</li>
+                    <li><strong>G:</strong> [ʒe] جيه</li>
+                    <li><strong>H:</strong> [aʃ] أهش (غالبًا صامت)</li>
+                    <li><strong>I:</strong> [i] إي</li>
+                    <li><strong>J:</strong> [ʒi] زي</li>
+                    <li><strong>K:</strong> [ka] كا</li>
+                    <li><strong>L:</strong> [ɛl] أل</li>
+                    <li><strong>M:</strong> [ɛm] أم</li>
+                    <li><strong>N:</strong> [ɛn] أن</li>
+                    <li><strong>O:</strong> [o] أو</li>
+                    <li><strong>P:</strong> [pe] بيه</li>
+                    <li><strong>Q:</strong> [ky] كي</li>
+                    <li><strong>R:</strong> [ɛʁ] أر (من الحنجرة)</li>
+                    <li><strong>S:</strong> [ɛs] أس</li>
+                    <li><strong>T:</strong> [te] تيه</li>
+                    <li><strong>U:</strong> [y] (زي الـ ü الألمانية)</li>
+                    <li><strong>V:</strong> [ve] في</li>
+                    <li><strong>W:</strong> [dubləve] دوبل-في</li>
+                    <li><strong>X:</strong> [iks] إكس</li>
+                    <li><strong>Y:</strong> [iɡʁɛk] إي-غريف (أو واي)</li>
+                    <li><strong>Z:</strong> [zɛd] زد</li>
+                </ul>
+            </div>
+
+            <!-- Accents Cheat Sheet -->
+            <div id="accents-cheat-sheet" class="cheat-sheet hidden">
+                <h3>Les Accents et les Opérations Spéciales</h3>
+                <img src="images/18.png" alt="French Accent Chart" class="chapter-image">
+                 <div class="details" dir="rtl">
+                    <h4>المجموعة الأولى: عائلة الأكسونات (The Accents)</h4>
+                    <ul>
+                        <li><strong>é (Accent Aigu - أكسون إيجو)</strong>
+                            <ul>
+                                <li><strong>الشكل:</strong> شرطة مايلة لليمين (/).</li>
+                                <li><strong>الوظيفة:</strong> بتكهرب حرف الـ E وبتخليه صوت مقفول وسريع.</li>
+                                <li><strong>النطق:</strong> "إيه" (زي كلمة "بيه").</li>
+                                <li><strong>مثال:</strong> répéter, enchanté.</li>
+                            </ul>
+                        </li>
+                        <li><strong>à / è (Accent Grave - أكسون جراڤ)</strong>
+                            <ul>
+                                <li><strong>الشكل:</strong> شرطة مايلة للشمال (\).</li>
+                                <li><strong>الوظيفة:</strong> على E، بتفتحه. على A، بتغير المعنى.</li>
+                                <li><strong>النطق:</strong> "إَه" (زي كلمة get بالانجليزي).</li>
+                                <li><strong>مثال:</strong> père, mère, frère.</li>
+                            </ul>
+                        </li>
+                        <li><strong>â / ê (Accent Circonflexe - أكسون سيركونفليكس)</strong>
+                            <ul>
+                                <li><strong>الشكل:</strong> قبعة (^).</li>
+                                <li><strong>الوظيفة:</strong> بتخلي صوت الحرف طويل ومفتوح. قد تدل على s سابقة.</li>
+                                <li><strong>مثال:</strong> hôpital, forêt.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="sub-heading">المجموعة الثانية: القواعد الخاصة (Special Operations)</h4>
+                    <ul>
+                        <li><strong>ë (Tréma - تريما)</strong>
+                            <ul>
+                                <li><strong>الشكل:</strong> نقطتين فوق الحرف.</li>
+                                <li><strong>الوظيفة:</strong> الفصل والطلاق! "انطق الحرف ده لوحده".</li>
+                                <li><strong>مثال:</strong> maïs (ذرة), Noël.</li>
+                            </ul>
+                        </li>
+                        <li><strong>' (Apostrophe - أبوستروف)</strong>
+                            <ul>
+                                <li><strong>الشكل:</strong> الفاصلة العلوية (').</li>
+                                <li><strong>الوظيفة:</strong> اللصق والدمج! بنشيل الحرف المتحرك من الكلمة الأولى.</li>
+                                <li><strong>مثال:</strong> l'aéroport, j'ai, l'amie.</li>
+                            </ul>
+                        </li>
+                         <li><strong>LL (Deux "L" - دو زيل "L مزدوجة")</strong>
+                            <ul>
+                                <li><strong>الشكل:</strong> حرفين l ورا بعض.</li>
+                                <li><strong>الوظيفة:</strong> بتتنطق زي "الياء" (y) أو "لام" عادية.</li>
+                                <li><strong>مثال:</strong> fille (فيي), ville (ڤيل).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="details">
+                    <h4>Group 1: The Accents</h4>
+                    <ul>
+                        <li><strong>é (Accent Aigu)</strong>
+                            <ul>
+                                <li><strong>Shape:</strong> Forward slash (/).</li>
+                                <li><strong>Function:</strong> Makes E sound closed and short.</li>
+                                <li><strong>Pronunciation:</strong> "eh".</li>
+                                <li><strong>Example:</strong> répéter, enchanté.</li>
+                            </ul>
+                        </li>
+                        <li><strong>à / è (Accent Grave)</strong>
+                            <ul>
+                                <li><strong>Shape:</strong> Backslash (\).</li>
+                                <li><strong>Function:</strong> On E, opens it. On A, changes meaning.</li>
+                                <li><strong>Pronunciation:</strong> "ah" (like in English "get").</li>
+                                <li><strong>Example:</strong> père, mère, frère.</li>
+                            </ul>
+                        </li>
+                        <li><strong>â / ê (Accent Circonflexe)</strong>
+                            <ul>
+                                <li><strong>Shape:</strong> Circumflex (^).</li>
+                                <li><strong>Function:</strong> Lengthens and slightly opens the vowel. May indicate a former 's'.</li>
+                                <li><strong>Example:</strong> hôpital, forêt.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h4 class="sub-heading">Group 2: Special Operations</h4>
+                    <ul>
+                        <li><strong>ë (Tréma)</strong>
+                            <ul>
+                                <li><strong>Shape:</strong> Two dots above.</li>
+                                <li><strong>Function:</strong> Separation! "Pronounce this vowel alone".</li>
+                                <li><strong>Example:</strong> maïs (corn), Noël.</li>
+                            </ul>
+                        </li>
+                        <li><strong>' (Apostrophe)</strong>
+                            <ul>
+                                <li><strong>Shape:</strong> Apostrophe (').</li>
+                                <li><strong>Function:</strong> Contraction! Drops the vowel from the first word.</li>
+                                <li><strong>Example:</strong> l'aéroport, j'ai, l'amie.</li>
+                            </ul>
+                        </li>
+                         <li><strong>LL (Deux "L")</strong>
+                            <ul>
+                                <li><strong>Shape:</strong> Two l's together.</li>
+                                <li><strong>Function:</strong> Pronounced like "y" or regular "l".</li>
+                                <li><strong>Example:</strong> fille (fee-y), ville (veel).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Numbers Cheat Sheet -->
+            <div id="numbers-cheat-sheet" class="cheat-sheet hidden">
+                <h3>Les Nombres 0-30</h3>
+                <ul class="columns details-list" dir="rtl">
+                    <li><strong>0:</strong> zéro (زيه-رو)</li>
+                    <li><strong>1:</strong> un (آن - بغُنّة)</li>
+                    <li><strong>2:</strong> deux (دو) - x صامتة</li>
+                    <li><strong>3:</strong> trois (تروا) - s صامتة</li>
+                    <li><strong>4:</strong> quatre (كاتر)</li>
+                    <li><strong>5:</strong> cinq (سانك)</li>
+                    <li><strong>6:</strong> six (سيس)</li>
+                    <li><strong>7:</strong> sept (سيت) - p صامتة</li>
+                    <li><strong>8:</strong> huit (ويت) - h صامتة</li>
+                    <li><strong>9:</strong> neuf (نوف)</li>
+                    <li><strong>10:</strong> dix (ديس)</li>
+                    <li><strong>11:</strong> onze (أونز)</li>
+                    <li><strong>12:</strong> douze (دوز)</li>
+                    <li><strong>13:</strong> treize (ترويز)</li>
+                    <li><strong>14:</strong> quatorze (كاتورز)</li>
+                    <li><strong>15:</strong> quinze (كانز)</li>
+                    <li><strong>16:</strong> seize (سيز)</li>
+                    <li><strong>17:</strong> dix-sept (حرفيًا 10+7)</li>
+                    <li><strong>18:</strong> dix-huit (Liaison: ديز-ويت)</li>
+                    <li><strong>19:</strong> dix-neuf</li>
+                    <li><strong>20:</strong> vingt (ڤـان - gt صامتين)</li>
+                    <li><strong>21:</strong> vingt et un (ڤان تيه آن)</li>
+                    <li><strong>22:</strong> vingt-deux (ڤان-دو)</li>
+                    <li><strong>30:</strong> trente (ترونت)</li>
+                </ul>
+                 <ul class="columns details-list">
+                    <li><strong>0:</strong> zéro (zee-ro)</li>
+                    <li><strong>1:</strong> un (ahn - with a nasal sound)</li>
+                    <li><strong>2:</strong> deux (duh) - silent x</li>
+                    <li><strong>3:</strong> trois (trwah) - silent s</li>
+                    <li><strong>4:</strong> quatre (katr)</li>
+                    <li><strong>5:</strong> cinq (sank)</li>
+                    <li><strong>6:</strong> six (sees)</li>
+                    <li><strong>7:</strong> sept (set) - silent p</li>
+                    <li><strong>8:</strong> huit (weet) - silent h</li>
+                    <li><strong>9:</strong> neuf (nuf)</li>
+                    <li><strong>10:</strong> dix (dees)</li>
+                    <li><strong>11:</strong> onze (onze)</li>
+                    <li><strong>12:</strong> douze (doze)</li>
+                    <li><strong>13:</strong> treize (treyz)</li>
+                    <li><strong>14:</strong> quatorze (kat-ORZ)</li>
+                    <li><strong>15:</strong> quinze (kanz)</li>
+                    <li><strong>16:</strong> seize (seyz)</li>
+                    <li><strong>17:</strong> dix-sept (literally 10+7)</li>
+                    <li><strong>18:</strong> dix-huit (Liaison: dee-ZHEET)</li>
+                    <li><strong>19:</strong> dix-neuf</li>
+                    <li><strong>20:</strong> vingt (van - silent gt)</li>
+                    <li><strong>21:</strong> vingt et un (van tay ahn)</li>
+                    <li><strong>22:</strong> vingt-deux (van-duh)</li>
+                    <li><strong>30:</strong> trente (trent)</li>
+                </ul>
+            </div>
+
+            <!-- Days Cheat Sheet -->
+            <div id="days-cheat-sheet" class="cheat-sheet hidden">
+                <h3>Les Jours de la Semaine</h3>
+                 <div class="audio-container"><audio controls src="audio/NG Piste 015.mp3"></audio></div>
+                <ul class="columns">
+                    <li>le lundi (الاثنين)</li>
+                    <li>le mardi (الثلاثاء)</li>
+                    <li>le mercredi (الأربعاء)</li>
+                    <li>le jeudi (الخميس)</li>
+                    <li>le vendredi (الجمعة)</li>
+                    <li>le samedi (السبت)</li>
+                    <li>le dimanche (الأحد)</li>
+                </ul>
+            </div>
+
+            <!-- Months Cheat Sheet -->
+            <div id="months-cheat-sheet" class="cheat-sheet hidden">
+                <h3>Les Mois de l'Année</h3>
+                 <div class="audio-container"><audio controls src="audio/NG Piste 016.mp3"></audio></div>
+                 <img src="images/10.png" alt="Months of the year visual" class="inline-image">
+                <ul class="columns">
+                   <li>janvier (يناير)</li>
+                   <li>février (فبراير)</li>
+                   <li>mars (مارس)</li>
+                   <li>avril (أبريل)</li>
+                   <li>mai (مايو)</li>
+                   <li>juin (يونيو)</li>
+                   <li>juillet (يوليو)</li>
+                   <li>août (أغسطس)</li>
+                   <li>septembre (سبتمبر)</li>
+                   <li>octobre (أكتوبر)</li>
+                   <li>novembre (نوفمبر)</li>
+                   <li>décembre (ديسمبر)</li>
+                </ul>
+            </div>
+        </section>
+
         <!-- ========= MODULE 1: LES FONDATIONS (THE FOUNDATIONS) ========= -->
         <section class="chapter" id="module1">
             <h2>Module 1: Les Fondations <span lang="ar">(أساسيات المحادثة)</span></h2>
@@ -267,71 +547,6 @@
             <p class="chapter-description">Mastering the technical secrets that make you sound authentically French.</p>
             <p class="chapter-description" lang="ar" dir="rtl">إتقان الأسرار التقنية اللي بتخليك تتكلم الفرنسية بشكل أصيل.</p>
             <img src="images/5.png" alt="Vintage alphabet chart" class="chapter-image">
-
-            <div class="card">
-                <h3>The French Alphabet & Spelling</h3>
-                <div class="audio-container">
-                    <span>Listen to the Alphabet Song:</span>
-                    <span lang="ar" dir="rtl">استمع إلى أغنية الحروف:</span>
-                    <audio controls src="audio/NG Piste 002.mp3"></audio>
-                </div>
-                <ul class="alphabet-list">
-                    <li><strong>A:</strong> [a] ah</li>
-                    <li><strong>B:</strong> [be] bay</li>
-                    <li><strong>C:</strong> [se] say</li>
-                    <li><strong>D:</strong> [de] day</li>
-                    <li><strong>E:</strong> [ə] (schwa) or [e] (eh)</li>
-                    <li><strong>F:</strong> [ɛf] eff</li>
-                    <li><strong>G:</strong> [ʒe] zhay</li>
-                    <li><strong>H:</strong> [aʃ] ahsh (usually silent)</li>
-                    <li><strong>I:</strong> [i] ee</li>
-                    <li><strong>J:</strong> [ʒi] zhee</li>
-                    <li><strong>K:</strong> [ka] kah</li>
-                    <li><strong>L:</strong> [ɛl] ell</li>
-                    <li><strong>M:</strong> [ɛm] emm</li>
-                    <li><strong>N:</strong> [ɛn] enn</li>
-                    <li><strong>O:</strong> [o] oh</li>
-                    <li><strong>P:</strong> [pe] pay</li>
-                    <li><strong>Q:</strong> [ky] kee</li>
-                    <li><strong>R:</strong> [ɛʁ] air (guttural)</li>
-                    <li><strong>S:</strong> [ɛs] ess</li>
-                    <li><strong>T:</strong> [te] tay</li>
-                    <li><strong>U:</strong> [y] (like German ü)</li>
-                    <li><strong>V:</strong> [ve] vay</li>
-                    <li><strong>W:</strong> [dubləve] doo-bluh-vay</li>
-                    <li><strong>X:</strong> [iks] eeks</li>
-                    <li><strong>Y:</strong> [iɡʁɛk] ee-grek (or 'i' long)</li>
-                    <li><strong>Z:</strong> [zɛd] zed</li>
-                </ul>
-                <ul class="alphabet-list" dir="rtl" lang="ar">
-                    <li><strong>A:</strong> [a] أه</li>
-                    <li><strong>B:</strong> [be] به</li>
-                    <li><strong>C:</strong> [se] سه</li>
-                    <li><strong>D:</strong> [de] ده</li>
-                    <li><strong>E:</strong> [ə] (schwa) أو [e] (إيه)</li>
-                    <li><strong>F:</strong> [ɛf] أف</li>
-                    <li><strong>G:</strong> [ʒe] جيه</li>
-                    <li><strong>H:</strong> [aʃ] أهش (غالبًا صامت)</li>
-                    <li><strong>I:</strong> [i] إي</li>
-                    <li><strong>J:</strong> [ʒi] زي</li>
-                    <li><strong>K:</strong> [ka] كا</li>
-                    <li><strong>L:</strong> [ɛl] أل</li>
-                    <li><strong>M:</strong> [ɛm] أم</li>
-                    <li><strong>N:</strong> [ɛn] أن</li>
-                    <li><strong>O:</strong> [o] أو</li>
-                    <li><strong>P:</strong> [pe] بيه</li>
-                    <li><strong>Q:</strong> [ky] كي</li>
-                    <li><strong>R:</strong> [ɛʁ] أر (من الحنجرة)</li>
-                    <li><strong>S:</strong> [ɛs] أس</li>
-                    <li><strong>T:</strong> [te] تيه</li>
-                    <li><strong>U:</strong> [y] (زي الـ ü الألمانية)</li>
-                    <li><strong>V:</strong> [ve] في</li>
-                    <li><strong>W:</strong> [dubləve] دوبل-في</li>
-                    <li><strong>X:</strong> [iks] إكس</li>
-                    <li><strong>Y:</strong> [iɡʁɛk] إي-غريف (أو واي)</li>
-                    <li><strong>Z:</strong> [zɛd] زد</li>
-                </ul>
-            </div>
 
             <div class="card">
                 <h3>The Rules of 'C' and 'G' (قاعدة حرف C و G)</h3>
@@ -772,6 +987,156 @@
                 </ul>
             </div>
         </section>
+
+        <!-- ========= NEW MODULE 6: ADVANCED INTROS & ASKING FOR WORDS ========= -->
+        <section class="chapter" id="module6">
+            <h2>Module 6: Conversations Avancées <span lang="ar">(المحادثات المتقدمة)</span></h2>
+            <p class="chapter-description">Dive deeper into introductions, asking for words, and navigating formal vs. informal speech.</p>
+            <p class="chapter-description" lang="ar" dir="rtl">غوص أعمق في التعارف، وسؤال الكلمات، والتعامل مع الخطاب الرسمي وغير الرسمي.</p>
+            <img src="images/16.png" alt="Advanced conversation scene" class="chapter-image">
+
+            <div class="card">
+                <h3>Fine-Tuning Introductions</h3>
+                <div class="audio-container">
+                    <span>Listen to Céline and Nicolas:</span>
+                    <span lang="ar" dir="rtl">استمع لسيلين ونيكولا:</span>
+                    <audio controls src="audio/L00_act01.mp3"></audio> <!-- Assuming this is the intro audio -->
+                </div>
+                <div class="details" dir="rtl">
+                    <h4>تحليل مشهد التعارف الرسمي:</h4>
+                    <ul>
+                        <li><strong>Bonjour, je m'appelle Céline Thomas.</strong> - التحية الرسمية والتعريف الكامل.</li>
+                        <li><strong>Moi, je m'appelle Nicolas Dubois.</strong> - استخدام "Moi" لخلق سلاسة.</li>
+                        <li><strong>Enchantée Nicolas ! / Enchanté Céline !</strong> - الفرق في الإملاء مهم!.</li>
+                    </ul>
+                    <h4 class="sub-heading">التنويعات على التعارف:</h4>
+                    <ul>
+                        <li><strong>غير رسمي:</strong> Salut ! Moi c'est Céline. / Salut ! Nicolas. Enchanté.</li>
+                        <li><strong>إضافة السؤال عن الحال:</strong> Comment allez-vous ? / Ça va ?</li>
+                        <li><strong>تقديم شخص تالت:</strong> Voici mon amie, Julie. / Bonjour. Enchanté Céline, enchanté Julie.</li>
+                        <li><strong>موقف سريع:</strong> Céline. / Nicolas. (الاسم لوحده كفاية).</li>
+                    </ul>
+                </div>
+                <div class="details">
+                    <h4>Analyzing the Formal Intro Scene:</h4>
+                    <ul>
+                        <li><strong>Bonjour, je m'appelle Céline Thomas.</strong> - Formal greeting and full introduction.</li>
+                        <li><strong>Moi, je m'appelle Nicolas Dubois.</strong> - Using "Moi" for smoothness.</li>
+                        <li><strong>Enchantée Nicolas ! / Enchanté Céline !</strong> - The spelling difference matters!.</li>
+                    </ul>
+                    <h4 class="sub-heading">Variations on Introductions:</h4>
+                    <ul>
+                        <li><strong>Informal:</strong> Salut ! Moi c'est Céline. / Salut ! Nicolas. Enchanté.</li>
+                        <li><strong>Adding "How are you?":</strong> Comment allez-vous ? / Ça va ?</li>
+                        <li><strong>Introducing a third person:</strong> Voici mon amie, Julie. / Bonjour. Enchanté Céline, enchanté Julie.</li>
+                        <li><strong>Quick situation:</strong> Céline. / Nicolas. (Name alone is enough).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Advanced Presentation & Asking for Words</h3>
+                <div class="audio-container">
+                    <span>Listen to the Secretary's Call:</span>
+                    <span lang="ar" dir="rtl">استمع لمكالمة السكرتيرة:</span>
+                    <audio controls src="audio/L00_act04.mp3"></audio>
+                </div>
+                <div class="details" dir="rtl">
+                    <h4>الأسئلة الأساسية لطلب المساعدة:</h4>
+                    <ul>
+                        <li><strong>Pardon / Excusez-moi, comment dit-on «...» en français ?</strong> - "لو سمحت، إزاي بنقول '...' بالفرنساوي؟"</li>
+                        <li><strong>Ça s'écrit comment ?</strong> - "بتتكتب إزاي؟"</li>
+                        <li><strong>Vous pouvez répéter, s'il vous plaît ?</strong> - "ممكن تكرر، لو سمحت؟"</li>
+                        <li><strong>Je ne sais pas.</strong> - "ماعرفش." (مقبول جدًا).</li>
+                    </ul>
+                    <h4 class="sub-heading">تمرين: استمع واكتب الأسماء (L00_act05.mp3)</h4>
+                    <p>استمع للصوت واكتب الأسماء اللي سمعتها في الخانات.</p>
+                    <img src="images/20.png" alt="Exercise 5: Listen and spell names" class="chapter-image">
+                    <div class="audio-container"><audio controls src="audio/L00_act05.mp3"></audio></div>
+                    <!-- Interactive Input Exercise -->
+                    <form id="name-spelling-exercise" class="interactive-exercise">
+                        <label for="name1">1. Camille:</label>
+                        <input type="text" id="name1" name="name1"><br><br>
+
+                        <label for="name2">2. Thierry:</label>
+                        <input type="text" id="name2" name="name2"><br><br>
+
+                        <label for="name3">3. Julie:</label>
+                        <input type="text" id="name3" name="name3"><br><br>
+
+                        <label for="name4">4. Loïc:</label>
+                        <input type="text" id="name4" name="name4"><br><br>
+
+                        <label for="name5">5. Hélène:</label>
+                        <input type="text" id="name5" name="name5"><br><br>
+
+                        <button type="button" onclick="checkSpelling()">Check Answers</button>
+                        <button type="button" onclick="showAnswers()">Show Answers</button>
+                        <p id="spelling-result"></p>
+                    </form>
+                </div>
+                <div class="details">
+                    <h4>Essential Questions for Help:</h4>
+                    <ul>
+                        <li><strong>Pardon / Excusez-moi, comment dit-on «...» en français ?</strong> - "Excuse me, how do you say '...' in French?"</li>
+                        <li><strong>Ça s'écrit comment ?</strong> - "How is that written?"</li>
+                        <li><strong>Vous pouvez répéter, s'il vous plaît ?</strong> - "Could you please repeat that?"</li>
+                        <li><strong>Je ne sais pas.</strong> - "I don't know." (Perfectly acceptable).</li>
+                    </ul>
+                    <h4 class="sub-heading">Exercise: Listen and Spell Names (L00_act05.mp3)</h4>
+                    <p>Listen to the audio and write the names you hear in the boxes.</p>
+                    <img src="images/20.png" alt="Exercise 5: Listen and spell names" class="chapter-image">
+                    <div class="audio-container"><audio controls src="audio/L00_act05.mp3"></audio></div>
+                    <!-- Interactive Input Exercise -->
+                    <form id="name-spelling-exercise" class="interactive-exercise">
+                        <label for="name1">1. Camille:</label>
+                        <input type="text" id="name1" name="name1"><br><br>
+
+                        <label for="name2">2. Thierry:</label>
+                        <input type="text" id="name2" name="name2"><br><br>
+
+                        <label for="name3">3. Julie:</label>
+                        <input type="text" id="name3" name="name3"><br><br>
+
+                        <label for="name4">4. Loïc:</label>
+                        <input type="text" id="name4" name="name4"><br><br>
+
+                        <label for="name5">5. Hélène:</label>
+                        <input type="text" id="name5" name="name5"><br><br>
+
+                        <button type="button" onclick="checkSpelling()">Check Answers</button>
+                        <button type="button" onclick="showAnswers()">Show Answers</button>
+                        <p id="spelling-result"></p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Formal vs. Informal (Le Tutoiement et le Vouvoiement)</h3>
+                <div class="audio-container">
+                    <span>Listen to Formal vs. Informal:</span>
+                    <span lang="ar" dir="rtl">استمع للرسمية مقابل العامية:</span>
+                    <audio controls src="audio/U1_L01_act02.mp3"></audio> <!-- Assuming this is the right one -->
+                </div>
+                <div class="details" dir="rtl">
+                    <h4>الفرق واضح:</h4>
+                    <ul>
+                        <li><strong>رسمية:</strong> Bonsoir Madame/Monsieur. Je m'appelle... Comment vous appelez-vous ?</li>
+                        <li><strong>عامية:</strong> Salut. Tu t'appelles comment ? / Julie. Et toi ? / Moi, c'est Alexandre.</li>
+                    </ul>
+                    <p>الاختيار بين <strong>Tu</strong> و <strong>Vous</strong> هو مفتاح لفهم السياق الاجتماعي.</p>
+                </div>
+                <div class="details">
+                    <h4>The Clear Difference:</h4>
+                    <ul>
+                        <li><strong>Formal:</strong> Bonsoir Madame/Monsieur. Je m'appelle... Comment vous appelez-vous ?</li>
+                        <li><strong>Informal:</strong> Salut. Tu t'appelles comment ? / Julie. Et toi ? / Moi, c'est Alexandre.</li>
+                    </ul>
+                    <p>Choosing between <strong>Tu</strong> and <strong>Vous</strong> is the key to understanding social context.</p>
+                </div>
+            </div>
+        </section>
+
     </main>
     <footer>
         <p>Created with ❤️ from personal French notes.</p>
@@ -780,8 +1145,89 @@
 
     <!-- Basic JavaScript for Interactivity -->
     <script>
-        // Example: Add a simple click handler to toggle detailed explanations
-        document.addEventListener('DOMContentLoaded', function() {
+        // Function to handle cheat sheet toggling
+        function setupCheatSheets() {
+            const buttons = document.querySelectorAll('.cheat-sheet-btn');
+            const sheets = document.querySelectorAll('.cheat-sheet');
+            const container = document.getElementById('cheat-sheets-container');
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const targetSheet = document.getElementById(targetId);
+
+                    // Show container if hidden
+                    if (container.classList.contains('hidden')) {
+                        container.classList.remove('hidden');
+                    }
+
+                    // Hide all sheets first
+                    sheets.forEach(sheet => {
+                        if (sheet !== targetSheet) {
+                            sheet.classList.add('hidden');
+                        }
+                    });
+
+                    // Toggle the target sheet
+                    targetSheet.classList.toggle('hidden');
+                });
+            });
+        }
+
+        // Function to check spelling exercise answers
+        function checkSpelling() {
+            const answers = {
+                name1: "Camille",
+                name2: "Thierry",
+                name3: "Julie",
+                name4: "Loïc",
+                name5: "Hélène"
+            };
+            let score = 0;
+            let total = Object.keys(answers).length;
+            let resultText = "";
+
+            for (const [key, value] of Object.entries(answers)) {
+                const userInput = document.getElementById(key).value.trim();
+                if (userInput.toLowerCase() === value.toLowerCase()) {
+                    score++;
+                    document.getElementById(key).style.backgroundColor = "#d4edda"; // Light green
+                } else {
+                    document.getElementById(key).style.backgroundColor = "#f8d7da"; // Light red
+                }
+            }
+
+            resultText = `You scored ${score} out of ${total}.`;
+            if (score === total) {
+                resultText += " Excellent!";
+            } else if (score >= total / 2) {
+                resultText += " Good effort!";
+            } else {
+                resultText += " Keep practicing!";
+            }
+
+            document.getElementById("spelling-result").innerText = resultText;
+        }
+
+        // Function to show answers for spelling exercise
+        function showAnswers() {
+            const answers = {
+                name1: "Camille",
+                name2: "Thierry",
+                name3: "Julie",
+                name4: "Loïc",
+                name5: "Hélène"
+            };
+
+            for (const [key, value] of Object.entries(answers)) {
+                document.getElementById(key).value = value;
+                document.getElementById(key).style.backgroundColor = "#fff3cd"; // Light yellow
+            }
+            document.getElementById("spelling-result").innerText = "Answers revealed!";
+        }
+
+        // Example: Add a simple click handler to toggle detailed explanations (from previous version)
+        function setupProTips() {
             const proTips = document.querySelectorAll('.pro-tip');
             proTips.forEach(tip => {
                 // Create a toggle button
@@ -811,8 +1257,10 @@
                     }
                 });
             });
+        }
 
-            // Example: Audio playback feedback (optional enhancement)
+        // Example: Audio playback feedback (optional enhancement)
+        function setupAudioFeedback() {
             const audios = document.querySelectorAll('audio');
             audios.forEach(audio => {
                 audio.addEventListener('play', function() {
@@ -829,6 +1277,14 @@
                     this.parentElement.classList.remove('playing');
                 });
             });
+        }
+
+        // Run setup functions when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            setupCheatSheets();
+            setupProTips();
+            setupAudioFeedback();
+            // Other initializations can go here
         });
     </script>
 </body>
