@@ -11,7 +11,12 @@
     --exercise-border: #d0dbe6;
     --dialogue-bg: #f8f9fa;
     --dialogue-border: #5a99e3; /* Blue for dialogue border */
-    
+    --cheat-sheet-bg: #ffffff; /* Background for cheat sheets */
+    --cheat-sheet-border: #ccc;
+    --success-color: #28a745; /* Green for correct answers */
+    --error-color: #dc3545;   /* Red for incorrect answers */
+    --warning-color: #ffc107; /* Yellow for revealed answers */
+
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Lato', sans-serif;
 }
@@ -31,17 +36,18 @@ body {
     text-align: right;
 }
 
+/* -- Header & Cheat Sheet Navigation -- */
 header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px; /* Reduced margin */
     border-bottom: 3px double var(--header-color);
     padding-bottom: 20px;
 }
-header h1 { 
-    font-family: var(--font-heading); 
-    font-size: 3.5em; 
-    color: var(--header-color); 
-    margin: 0; 
+header h1 {
+    font-family: var(--font-heading);
+    font-size: 3em; /* Slightly smaller default */
+    color: var(--header-color);
+    margin: 0 0 10px 0; /* Adjusted margin */
 }
 /* Added style for potential subtitle */
 header .subtitle {
@@ -50,128 +56,158 @@ header .subtitle {
     margin-top: 10px;
     color: var(--text-color); /* Use main text color for subtitle */
 }
-header p { 
-    font-size: 1.2em; 
-    font-style: italic; 
-    color: var(--accent-color); 
+header p {
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--accent-color);
     margin: 5px 0 0 0; /* Adjust margin for better spacing with subtitle */
 }
-main { 
+
+/* Cheat Sheet Navigation Buttons */
+.cheat-sheet-nav {
+    margin-top: 15px;
+}
+.cheat-sheet-btn {
+    background-color: var(--card-bg);
+    color: var(--header-color);
+    border: 1px solid var(--cheat-sheet-border);
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 0 5px 10px 5px; /* Add bottom margin for wrapping */
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+}
+.cheat-sheet-btn:hover {
+    background-color: var(--tip-bg);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+.cheat-sheet-btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* -- Main Content -- */
+main {
     max-width: 900px; /* Slightly increased max-width for better readability on larger screens */
-    margin: 0 auto; 
+    margin: 0 auto;
     padding: 0 10px; /* Add padding for smaller screens */
 }
-footer { 
-    text-align: center; 
-    margin-top: 50px; 
-    padding-top: 20px; 
-    border-top: 1px solid #ddd; 
-    font-size: 0.9em; 
-    color: #777; 
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    font-size: 0.9em;
+    color: #777;
 }
 
 
 /* -- Chapter Styles -- */
-.chapter { 
-    margin-bottom: 60px; 
+.chapter {
+    margin-bottom: 60px;
 }
-.chapter h2 { 
-    font-family: var(--font-heading); 
-    font-size: 2.5em; 
-    color: var(--header-color); 
-    text-align: center; 
-    margin-bottom: 10px; 
+.chapter h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2em; /* Slightly smaller */
+    color: var(--header-color);
+    text-align: center;
+    margin-bottom: 15px; /* Adjusted margin */
 }
-.chapter-description { 
-    text-align: center; 
-    font-size: 1.1em; 
-    font-style: italic; 
-    margin-bottom: 40px; 
-    color: #555; 
+.chapter-description {
+    text-align: center;
+    font-size: 1.1em;
+    font-style: italic;
+    margin-bottom: 30px; /* Adjusted margin */
+    color: #555;
 }
-.chapter-image { 
-    width: 100%; 
-    max-width: 500px; 
-    display: block; 
-    margin: 20px auto 30px; 
-    border-radius: 5px; 
-    box-shadow: 0 5px 15px var(--shadow-color); 
-    border: 8px solid white; 
+.chapter-image {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    border: 8px solid white;
 }
-.decorative-image { 
-    max-width: 200px; 
-    display: block; 
-    margin: 20px auto; 
-    opacity: 0.5; 
+.decorative-image {
+    max-width: 200px;
+    display: block;
+    margin: 20px auto;
+    opacity: 0.5;
 }
-.inline-image { 
-    max-width: 100%; 
-    border-radius: 4px; 
-    margin: 10px 0; 
+.inline-image {
+    max-width: 100%;
+    border-radius: 4px;
+    margin: 10px 0;
 }
 
 /* -- The Learning Cards -- */
-.card { 
-    background-color: var(--card-bg); 
-    border: 1px solid #eee; 
-    border-radius: 8px; 
-    padding: 25px; 
-    margin-bottom: 25px; 
-    box-shadow: 0 4px 10px var(--shadow-color); 
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px var(--shadow-color);
 }
-.card h3 { 
-    font-family: var(--font-heading); 
-    font-size: 1.8em; 
-    color: var(--accent-color); 
-    margin-top: 0; 
-    margin-bottom: 15px; 
+.card h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8em;
+    color: var(--accent-color);
+    margin-top: 0;
+    margin-bottom: 15px;
 }
-.card h4 { 
-    font-family: var(--font-heading); 
-    font-size: 1.4em; 
-    color: var(--header-color); 
-    margin-top: 20px; 
+.card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4em;
+    color: var(--header-color);
+    margin-top: 20px;
     margin-bottom: 10px; /* Reduced margin below h4 */
 }
-.card h4.sub-heading { 
-    margin-top: 25px; 
-    padding-top: 15px; 
-    border-top: 1px solid #eee; 
+.card h4.sub-heading {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
 }
 
-.pronunciation { 
-    font-weight: bold; 
+.pronunciation {
+    font-weight: bold;
     font-size: 1.1em; /* Slightly smaller */
-    color: #555; 
-    background-color: #f7f7f7; 
+    color: #555;
+    background-color: #f7f7f7;
     padding: 6px 10px; /* Adjusted padding */
-    border-radius: 5px; 
-    display: inline-block; 
-    border: 1px solid #eee; 
+    border-radius: 5px;
+    display: inline-block;
+    border: 1px solid #eee;
     margin-top: 5px; /* Add margin for spacing */
     margin-bottom: 10px; /* Add margin below */
 }
-.card .details { 
+.card .details {
     margin-top: 10px; /* Reduced margin */
     margin-bottom: 15px; /* Add margin below details block */
     font-size: 1.05em; /* Slightly smaller than before */
 }
-.details-list { 
-    padding-left: 20px; 
-    list-style-type: disc; 
+.details-list {
+    padding-left: 20px;
+    list-style-type: disc;
     margin-top: 10px; /* Add margin above lists */
     margin-bottom: 15px; /* Add margin below lists */
 }
 .details-list li {
     margin-bottom: 8px; /* Space between list items */
 }
-[dir="rtl"] .details-list { 
-    padding-left: 0; 
-    padding-right: 20px; 
+[dir="rtl"] .details-list {
+    padding-left: 0;
+    padding-right: 20px;
 }
-[dir="rtl"] .details-list p, 
-[dir="rtl"] .details-list .pronunciation { 
-    text-align: right; 
+[dir="rtl"] .details-list p,
+[dir="rtl"] .details-list .pronunciation {
+    text-align: right;
 }
 
 /* -- The Special 'Pro Tip' Box for Detailed Explanations -- */
@@ -191,57 +227,57 @@ footer {
     border-left: none;
     border-right: 4px solid var(--accent-color);
 }
-.pro-tip h4 { 
-    margin-top: 0; 
-    font-size: 1.2em; 
-    color: var(--accent-color); 
+.pro-tip h4 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: var(--accent-color);
 }
-.pro-tip ul, .pro-tip p { 
-    margin-top: 10px; 
+.pro-tip ul, .pro-tip p {
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 .pro-tip ul {
     padding-left: 20px;
 }
-[dir="rtl"] .pro-tip ul { 
-    padding-left: 0; 
-    padding-right: 20px; 
+[dir="rtl"] .pro-tip ul {
+    padding-left: 0;
+    padding-right: 20px;
 }
-.pro-tip p { 
-    margin-top: 5px; 
+.pro-tip p {
+    margin-top: 5px;
 }
 
 
 /* -- Other Styles -- */
-.tag { 
-    font-size: 0.7em; 
-    background-color: #eef2f5; 
-    color: #3b5998; 
-    padding: 3px 8px; 
-    border-radius: 10px; 
-    vertical-align: middle; 
-    margin-left: 10px; 
+.tag {
+    font-size: 0.7em;
+    background-color: #eef2f5;
+    color: #3b5998;
+    padding: 3px 8px;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-left: 10px;
 }
 /* Audio Container Styles */
-audio { 
-    width: 100%; 
-    margin-top: 10px; 
-    height: 40px; 
+audio {
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
 }
-.audio-container { 
-    text-align: left; 
-    background: #fff; 
-    padding: 15px; 
-    border-radius: 5px; 
-    margin: 20px auto 30px; 
-    border: 1px solid #eaddc0; 
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+.audio-container {
+    text-align: left;
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px auto 30px;
+    border: 1px solid #eaddc0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
-.audio-container span { 
-    display: block; 
-    font-weight: bold; 
-    margin-bottom: 10px; 
-    color: var(--header-color); 
+.audio-container span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--header-color);
 }
 /* Audio Feedback (from JS) */
 .audio-container.playing {
@@ -250,25 +286,25 @@ audio {
 }
 
 /* Section Divider */
-hr.section-divider { 
-    border: 0; 
-    height: 1px; 
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)); 
-    margin: 50px 0; 
+hr.section-divider {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    margin: 50px 0;
 }
 
 /* -- Exercise Card Styling -- */
-.exercise-card { 
-    background: var(--exercise-bg); 
-    border: 1px solid var(--exercise-border); 
-    border-radius: 8px; 
-    padding: 25px; 
-    margin-bottom: 25px; 
+.exercise-card {
+    background: var(--exercise-bg);
+    border: 1px solid var(--exercise-border);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
 }
-.exercise-card h3 { 
-    font-family: var(--font-heading); 
+.exercise-card h3 {
+    font-family: var(--font-heading);
     color: #3b5998; /* Blue accent for exercises */
-    margin-top: 0; 
+    margin-top: 0;
 }
 
 /* -- Verb and Dialogue Styles -- */
@@ -300,11 +336,11 @@ hr.section-divider {
     margin-top: 15px; /* Add margin above */
     margin-bottom: 20px; /* Add margin below */
 }
-.dialogue p { 
-    margin: 0 0 10px 0; 
+.dialogue p {
+    margin: 0 0 10px 0;
 }
-.dialogue p:last-child { 
-    margin-bottom: 0; 
+.dialogue p:last-child {
+    margin-bottom: 0;
 }
 /* RTL for dialogue */
 [dir="rtl"] .dialogue {
@@ -313,22 +349,22 @@ hr.section-divider {
 }
 
 /* -- Alphabet & Columns -- */
-.alphabet-list, .columns { 
-    list-style: none; 
-    padding: 0; 
-    columns: 2; 
-    -webkit-columns: 2; 
-    -moz-columns: 2; 
-    column-gap: 30px; 
+.alphabet-list, .columns {
+    list-style: none;
+    padding: 0;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    column-gap: 30px;
     margin-top: 15px; /* Add margin above */
     margin-bottom: 20px; /* Add margin below */
 }
-.alphabet-list li, .columns li { 
-    padding: 5px 0; 
+.alphabet-list li, .columns li {
+    padding: 5px 0;
     break-inside: avoid; /* Prevent list items from breaking across columns */
 }
 
-/* -- Toggle Button (from JS) -- */
+/* -- Toggle Button (from JS - for Pro Tips) -- */
 .toggle-btn {
     display: block;
     margin-top: 10px;
@@ -350,6 +386,97 @@ hr.section-divider {
     display: none;
 }
 
+/* -- NEW: Interactive Exercise Styles -- */
+.interactive-exercise {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+.interactive-exercise label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.interactive-exercise input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+}
+/* Feedback colors applied via JS */
+.interactive-exercise input[type="text"].correct {
+    background-color: var(--success-color);
+    color: white;
+}
+.interactive-exercise input[type="text"].incorrect {
+    background-color: var(--error-color);
+    color: white;
+}
+.interactive-exercise input[type="text"].revealed {
+    background-color: var(--warning-color);
+    color: black;
+}
+.interactive-exercise button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 15px;
+    margin-right: 10px;
+    margin-bottom: 10px; /* Space below buttons on small screens */
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+.interactive-exercise button:hover {
+    background-color: #9a3535; /* Darker shade on hover */
+}
+.interactive-exercise #spelling-result {
+    margin-top: 15px;
+    font-weight: bold;
+    /* Color can be set by JS */
+}
+
+
+/* -- NEW: Cheat Sheet Styles -- */
+.cheat-sheets-container {
+    margin-bottom: 40px;
+    /* Initially hidden by JS, but provide a base style */
+    /* transition: opacity 0.3s ease-in-out; */ /* Optional: for fade effect if implemented in JS */
+}
+.cheat-sheet {
+    background-color: var(--cheat-sheet-bg);
+    border: 1px solid var(--cheat-sheet-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+.cheat-sheet h3 {
+    font-family: var(--font-heading);
+    color: var(--header-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.cheat-sheet.hidden {
+    display: none;
+}
+/* Specific styles for Accents cheat sheet image */
+#accents-cheat-sheet .chapter-image {
+    max-width: 400px; /* Slightly smaller for this specific image */
+    margin: 15px auto;
+}
+
+
 /* -- Responsive Design -- */
 @media (max-width: 768px) {
     body {
@@ -361,7 +488,7 @@ hr.section-divider {
     .chapter h2 {
         font-size: 2em;
     }
-    .card, .exercise-card {
+    .card, .exercise-card, .cheat-sheet {
         padding: 20px;
     }
     .alphabet-list, .columns {
@@ -372,6 +499,16 @@ hr.section-divider {
     .chapter-image, .decorative-image, .inline-image {
         max-width: 100%;
         height: auto;
+    }
+    .cheat-sheet-btn {
+        display: inline-block; /* Ensure buttons wrap properly */
+        width: auto; /* Override potential full width on small screens */
+        margin: 0 3px 8px 3px; /* Adjust margins for smaller screens */
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
+    .interactive-exercise input[type="text"] {
+        max-width: 100%; /* Full width on small screens */
     }
 }
 
@@ -394,5 +531,10 @@ hr.section-divider {
     }
     .audio-container {
         padding: 12px;
+    }
+    .cheat-sheet-btn {
+        font-size: 0.8em;
+        padding: 5px 8px;
+        margin: 0 2px 6px 2px;
     }
 }
